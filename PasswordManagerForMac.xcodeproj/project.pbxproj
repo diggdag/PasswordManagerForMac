@@ -12,6 +12,15 @@
 		CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */; };
 		CFFA39EC298AB43000290195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFFA39EB298AB43000290195 /* Assets.xcassets */; };
 		CFFA39EF298AB43000290195 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFFA39ED298AB43000290195 /* Main.storyboard */; };
+		CFFA3A1E298BA10B00290195 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A16298BA10B00290195 /* User+CoreDataClass.swift */; };
+		CFFA3A1F298BA10B00290195 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A17298BA10B00290195 /* User+CoreDataProperties.swift */; };
+		CFFA3A20298BA10B00290195 /* Account+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A18298BA10B00290195 /* Account+CoreDataClass.swift */; };
+		CFFA3A21298BA10B00290195 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A19298BA10B00290195 /* Account+CoreDataProperties.swift */; };
+		CFFA3A22298BA10B00290195 /* Backup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A1A298BA10B00290195 /* Backup+CoreDataClass.swift */; };
+		CFFA3A23298BA10B00290195 /* Backup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A1B298BA10B00290195 /* Backup+CoreDataProperties.swift */; };
+		CFFA3A24298BA10B00290195 /* CategorySetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A1C298BA10B00290195 /* CategorySetting+CoreDataClass.swift */; };
+		CFFA3A25298BA10B00290195 /* CategorySetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A1D298BA10B00290195 /* CategorySetting+CoreDataProperties.swift */; };
+		CFFA3A27298BA18000290195 /* _CategorySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA3A26298BA18000290195 /* _CategorySetting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +31,15 @@
 		CFFA39EB298AB43000290195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFFA39EE298AB43000290195 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFFA39F0298AB43000290195 /* PasswordManagerForMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PasswordManagerForMac.entitlements; sourceTree = "<group>"; };
+		CFFA3A16298BA10B00290195 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "PasswordManagerForMac/User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFFA3A17298BA10B00290195 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "PasswordManagerForMac/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFFA3A18298BA10B00290195 /* Account+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataClass.swift"; path = "PasswordManagerForMac/Account+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFFA3A19298BA10B00290195 /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "PasswordManagerForMac/Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFFA3A1A298BA10B00290195 /* Backup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Backup+CoreDataClass.swift"; path = "PasswordManagerForMac/Backup+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFFA3A1B298BA10B00290195 /* Backup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Backup+CoreDataProperties.swift"; path = "PasswordManagerForMac/Backup+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFFA3A1C298BA10B00290195 /* CategorySetting+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CategorySetting+CoreDataClass.swift"; path = "PasswordManagerForMac/CategorySetting+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFFA3A1D298BA10B00290195 /* CategorySetting+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CategorySetting+CoreDataProperties.swift"; path = "PasswordManagerForMac/CategorySetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFFA3A26298BA18000290195 /* _CategorySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _CategorySetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +56,14 @@
 		CFFA39D8298AB42E00290195 = {
 			isa = PBXGroup;
 			children = (
+				CFFA3A16298BA10B00290195 /* User+CoreDataClass.swift */,
+				CFFA3A17298BA10B00290195 /* User+CoreDataProperties.swift */,
+				CFFA3A18298BA10B00290195 /* Account+CoreDataClass.swift */,
+				CFFA3A19298BA10B00290195 /* Account+CoreDataProperties.swift */,
+				CFFA3A1A298BA10B00290195 /* Backup+CoreDataClass.swift */,
+				CFFA3A1B298BA10B00290195 /* Backup+CoreDataProperties.swift */,
+				CFFA3A1C298BA10B00290195 /* CategorySetting+CoreDataClass.swift */,
+				CFFA3A1D298BA10B00290195 /* CategorySetting+CoreDataProperties.swift */,
 				CFFA39E3298AB42E00290195 /* PasswordManagerForMac */,
 				CFFA39E2298AB42E00290195 /* Products */,
 			);
@@ -60,6 +86,7 @@
 				CFFA39ED298AB43000290195 /* Main.storyboard */,
 				CFFA39F0298AB43000290195 /* PasswordManagerForMac.entitlements */,
 				CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */,
+				CFFA3A26298BA18000290195 /* _CategorySetting.swift */,
 			);
 			path = PasswordManagerForMac;
 			sourceTree = "<group>";
@@ -134,9 +161,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFA3A25298BA10B00290195 /* CategorySetting+CoreDataProperties.swift in Sources */,
+				CFFA3A23298BA10B00290195 /* Backup+CoreDataProperties.swift in Sources */,
+				CFFA3A21298BA10B00290195 /* Account+CoreDataProperties.swift in Sources */,
 				CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */,
+				CFFA3A27298BA18000290195 /* _CategorySetting.swift in Sources */,
+				CFFA3A20298BA10B00290195 /* Account+CoreDataClass.swift in Sources */,
+				CFFA3A24298BA10B00290195 /* CategorySetting+CoreDataClass.swift in Sources */,
 				CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */,
+				CFFA3A1E298BA10B00290195 /* User+CoreDataClass.swift in Sources */,
+				CFFA3A1F298BA10B00290195 /* User+CoreDataProperties.swift in Sources */,
 				CFFA39E5298AB42E00290195 /* AppDelegate.swift in Sources */,
+				CFFA3A22298BA10B00290195 /* Backup+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
