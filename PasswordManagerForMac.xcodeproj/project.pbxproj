@@ -11,6 +11,7 @@
 		CF3B20CC29908A780071F111 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B20C929908A770071F111 /* Consts.swift */; };
 		CF3B20CD29908A780071F111 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B20CA29908A780071F111 /* Utilities.swift */; };
 		CF3B20CF29908B2B0071F111 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3B20CE29908B2B0071F111 /* Images.xcassets */; };
+		CF3DA4EC2995085800F9C465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF3DA4EE2995085800F9C465 /* Localizable.strings */; };
 		CFFA39E5298AB42E00290195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E4298AB42E00290195 /* AppDelegate.swift */; };
 		CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E6298AB42E00290195 /* ViewController.swift */; };
 		CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */; };
@@ -32,6 +33,9 @@
 		CF3B20C929908A770071F111 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		CF3B20CA29908A780071F111 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CF3B20CE29908B2B0071F111 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CF3DA4E9299507A800F9C465 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		CF3DA4ED2995085800F9C465 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CF3DA4EF2995085C00F9C465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CFFA39E1298AB42E00290195 /* PasswordManagerForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordManagerForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFA39E4298AB42E00290195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFA39E6298AB42E00290195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				CFFA39F0298AB43000290195 /* PasswordManagerForMac.entitlements */,
 				CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */,
 				CFFA3A26298BA18000290195 /* _CategorySetting.swift */,
+				CF3DA4EE2995085800F9C465 /* Localizable.strings */,
 			);
 			path = PasswordManagerForMac;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = CFFA39D8298AB42E00290195;
 			productRefGroup = CFFA39E2298AB42E00290195 /* Products */;
@@ -162,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF3B20CF29908B2B0071F111 /* Images.xcassets in Resources */,
+				CF3DA4EC2995085800F9C465 /* Localizable.strings in Resources */,
 				CFFA39EC298AB43000290195 /* Assets.xcassets in Resources */,
 				CFFA39EF298AB43000290195 /* Main.storyboard in Resources */,
 			);
@@ -195,10 +202,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CF3DA4EE2995085800F9C465 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF3DA4ED2995085800F9C465 /* ja */,
+				CF3DA4EF2995085C00F9C465 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CFFA39ED298AB43000290195 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CFFA39EE298AB43000290195 /* Base */,
+				CF3DA4E9299507A800F9C465 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -210,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -270,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -10,32 +10,102 @@ import Cocoa
 
 class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource,NSSearchFieldDelegate {
     var accounts: [Account]?
-//    var accounts:[[TestClass]]?
+    //    var accounts:[[TestClass]]?
     var sections: [String]?
     var settingKeys:[Int16]?
     var selectedSectionNum: Int?
     var selectedItemNum: Int?
     var settings: [_CategorySetting] = []
-//    var dreams = [Dream]()
-
+    
     static var searchText: String? = nil
     static var selectedCategory: _CategorySetting? = nil
-
+    
     @IBOutlet var mymenu: NSMenu!
     @IBOutlet weak var tableView: NSTableView!
-//    @IBOutlet weak var tableView: NSScrollView!
+    //    @IBOutlet weak var tableView: NSScrollView!
     @IBOutlet weak var searchBar: NSSearchField!
-//    @IBOutlet weak var searchBarText: NSSearchFieldCell!
-//    @objc dynamic var selectedIndexes = IndexSet()
+    //    @IBOutlet weak var searchBarText: NSSearchFieldCell!
+    //    @objc dynamic var selectedIndexes = IndexSet()
+    
+    @IBAction func addaction(_ sender: Any) {
+        print("addaction called")
+        
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = question
+            myPopup.informativeText = text
+            myPopup.alertStyle = NSAlert.Style.warning
+            let textField = NSTextField(frame: NSRect(x:0,y: 0,width:  200,height:  24))
+            
+            myPopup.accessoryView = textField
+            
+            myPopup.addButton(withTitle: "OK")
+            myPopup.addButton(withTitle: "Cancel")
+            let res = myPopup.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                let name = (myPopup.accessoryView as! NSTextField).stringValue
+                print("FirstButton name:\(name)")
+                
+                //名前は必須
+                if(name == "") {
+                    showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                    return false
+                }
+                
+                //名前がすでに使用されているかどうかをチェックする
+                let account: Account? = Utilities.getAccount(name: name)
+                if account != nil {
+                    showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence2", comment: ""))//その名前はすでに使用されています
+                    return false
+                }
+                
+                let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+                let viewContext = appDelegate.persistentContainer.viewContext
+                
+                //空行チェック↓
+//                let query: NSFetchRequest<Account> = Account.fetchRequest()
+//
+//                let predicate = NSPredicate(format: "%K = %@", "name", "")
+//                query.predicate = predicate
+//                do {
+//                    let fetchResults = try viewContext.fetch(query)
+//
+//                    if(fetchResults.count != 0){
+//                        print("もう空行ある")
+//                        return
+//                    }
+//                } catch {
+//                }
+                //add
+                let newaccount = NSEntityDescription.entity(forEntityName: "Account", in: viewContext)
+                let newRecord = NSManagedObject(entity: newaccount!, insertInto: viewContext)
+                newRecord.setValue(name, forKey: "name")
+                appDelegate.saveAction(nil)//TODO 要らない疑惑
+                
+                //検索条件を消してサーチし直し
+                ViewController.searchText = name
+                searchBar.stringValue = name
+                search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
+                return true
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        let answer = dialogOKCancel(question: "Ok?", text: "name?")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //test code
         testAdd()
         testCategoryAdd()
-//        search(searchText: nil, category: nil)
+        //        search(searchText: nil, category: nil)
     }
     
+    //test code
     func testAdd() {
         //全削除
         do{
@@ -77,6 +147,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             appDelegate.saveAction(nil)//TODO 要らない疑惑
         }
     }
+    
+    //test code
     func testCategoryAdd(){
         
         settings.append(_CategorySetting(no: 0, name: "test_web", imageNo: 0))
@@ -116,7 +188,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 newRecord.setValue(index, forKey: "no")
                 newRecord.setValue(name[index], forKey: "name")
                 newRecord.setValue(imageNo[index], forKey: "imageNo")
-//                appDelegate.saveContext()
+                //                appDelegate.saveContext()
                 appDelegate.saveAction(nil)
             }
         }
@@ -127,11 +199,11 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         if ViewController.searchText != nil {
             searchBar.stringValue = ViewController.searchText!
         }
-//        if ViewController.selectedCategory != nil {
-//            category.selectedSegmentIndex = Int((ViewController.selectedCategory?.no)!) + 1
-//        }
+        //        if ViewController.selectedCategory != nil {
+        //            category.selectedSegmentIndex = Int((ViewController.selectedCategory?.no)!) + 1
+        //        }
         Utilities.refreshSettings()
-//        setCategorySegment()
+        //        setCategorySegment()
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
         
         mymenu.removeAllItems()
@@ -157,23 +229,23 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             }
         }
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int{
-//        if accounts == nil{
-//            return 0
-//        }
-//        var cnt = 0
-//        for account in accounts!{
-//            cnt = cnt + account.count
-//        }
-//        return cnt
-//        return accounts == nil ? 0 : accounts![section].count
+        //        if accounts == nil{
+        //            return 0
+        //        }
+        //        var cnt = 0
+        //        for account in accounts!{
+        //            cnt = cnt + account.count
+        //        }
+        //        return cnt
+        //        return accounts == nil ? 0 : accounts![section].count
         let cnt = accounts == nil ? 0 : accounts!.count
         print("numberOfRows cnt:\(cnt)")
         return cnt
@@ -182,33 +254,33 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         print("didAdd called!!")
     }
     func tableViewSelectionDidChange(_ notification: Notification){
-//        print("tableViewSelectionDidChange called!!")
+        //        print("tableViewSelectionDidChange called!!")
     }
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
-//        let account: Account = accounts![indexPath.section][indexPath.row]
-//
-//        let cell: TableViewCell_list = tableView.dequeueReusableCell(withIdentifier: "TableViewCell_list") as! TableViewCell_list
-//
-//        cell.backgroundColor = UIColor.clear
-//        cell.contentView.backgroundColor = UIColor.clear
-//        return cell
+        //        let account: Account = accounts![indexPath.section][indexPath.row]
+        //
+        //        let cell: TableViewCell_list = tableView.dequeueReusableCell(withIdentifier: "TableViewCell_list") as! TableViewCell_list
+        //
+        //        cell.backgroundColor = UIColor.clear
+        //        cell.contentView.backgroundColor = UIColor.clear
+        //        return cell
         
         
-//        print("objectValueFor called!!row:\(row),column:\(tableColumn?.identifier.rawValue)")
+        //        print("objectValueFor called!!row:\(row),column:\(tableColumn?.identifier.rawValue)")
         if accounts == nil{
             print("accountsなし")
             return nil
         }
-//        print("row:\(row),tableColumn?.identifier:\(tableColumn?.identifier)")
+        //        print("row:\(row),tableColumn?.identifier:\(tableColumn?.identifier)")
         if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_category") {
             if accounts![row].category != Int16.max{
                 return accounts![row].category
-//                return Category(rawValue:Utilities.settings[ accounts![row].category]!.imageNo)!.image()
+                //                return Category(rawValue:Utilities.settings[ accounts![row].category]!.imageNo)!.image()
             }
             else{
                 return 0
             }
-//            return accounts![row].category;
+            //            return accounts![row].category;
         }
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_name") {//AutomaticTableColumnIdentifier.0
             return accounts![row].name;
@@ -243,6 +315,19 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         }
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_name") {
             name = object as? String
+            
+            //名前は必須
+            if(name == "") {
+                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                return
+            }
+            
+            //名前がすでに使用されているかどうかをチェックする
+            let account: Account? = Utilities.getAccount(name: name!)
+            if account != nil {
+                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence2", comment: ""))//その名前はすでに使用されています
+                return
+            }
         }
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_id") {
             id = object as? String
@@ -278,11 +363,43 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         }
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
     }
+    
+    //アラートを表示するメソッド
+    func showAlert(myTitle: String, mySentence: String) {
+        let alert = NSAlert()
+        alert.alertStyle = NSAlert.Style.warning
+        alert.messageText = mySentence
+        alert.informativeText = myTitle
+        alert.icon = NSImage(named: NSImage.computerName)
+        
+        let ok = alert.addButton(withTitle: "Ok")
+        ok.image = NSImage(named: NSImage.actionTemplateName)
+        ok.imagePosition = NSControl.ImagePosition.imageLeft
+        ok.tag = ButtonTag.Ok.rawValue
+        
+        //            let cancel = alert.addButton(withTitle: "Cancel")
+        //            cancel.tag = ButtonTag.Cancel.rawValue
+        
+        // alert.runModal()
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            switch response.rawValue
+            {
+            case ButtonTag.Ok.rawValue:
+                print("OK")
+                break
+                //                case ButtonTag.Cancel.rawValue:
+                //                    print("Cancel")
+                //                    break
+            default:
+                print("invalid")
+            }
+        })
+    }
     //検索
     func search(searchText: String?, category: _CategorySetting?) {
         print("search")
         let query: NSFetchRequest<Account> = Account.fetchRequest()
-
+        
         if searchText != nil && category != nil {
             let predicate = NSPredicate(format: "%K CONTAINS[c] %@ AND %K = %d", "name", searchText!, "category", (category?.no)!)
             query.predicate = predicate
@@ -305,10 +422,10 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         let sortDescriptors = [sortDescriptor]
         query.sortDescriptors = sortDescriptors
-
+        
         accounts = []
-//        var accounts: [Account] = []
-
+        //        var accounts: [Account] = []
+        
         let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
         let viewContext = appDelegate.persistentContainer.viewContext
         do {
@@ -321,21 +438,21 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         } catch {
         }
         print("accounts count:\(accounts?.count)")
-//        appendSections (accounts)
-//        appendAccounts (accounts)
+        //        appendSections (accounts)
+        //        appendAccounts (accounts)
     }
     
     
     func searchFieldDidStartSearching(_ sender: NSSearchField){
         print("searchFieldDidStartSearching")
     }
-
+    
     func searchFieldDidEndSearching(_ sender: NSSearchField){
         print("searchFieldDidEndSearching")
     }
     
     func controlTextDidChange(_ obj: Notification){
-//        print("controlTextDidChange")
+        //        print("controlTextDidChange")
         if obj.object is NSTextField {
             var field:NSTextField = obj.object as! NSTextField
             print("controlTextDidChange searchBarText:\(searchBar.stringValue),obj:\(field.stringValue)")
@@ -344,72 +461,72 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 ViewController.searchText = searchBar.stringValue == "" ? nil : searchBar.stringValue
                 search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
             }
-//            else if field.identifier == NSUserInterfaceItemIdentifier("search2") {
-//                print("search2")//test
-//            }
+            //            else if field.identifier == NSUserInterfaceItemIdentifier("search2") {
+            //                print("search2")//test
+            //            }
         }
     }
     //引数accountsでグローバル変数sectionsを作り直す
     //※ appendAccountsより前に呼ぶ
-//    func appendSections(_ accounts: [Account]?) {
-//        if accounts == nil {
-//            return
-//        }
-//        sections = []
-//
-//        for account in accounts! {
-//            var exist = false
-//            let newSection = (account.name! as NSString).substring(to: 1).uppercased()
-//            for section in sections! {
-//                if newSection == section {
-//                    exist = true
-//                }
-//            }
-//            if !exist {
-//                sections!.append(newSection)
-//            }
-//        }
-//    }
-
+    //    func appendSections(_ accounts: [Account]?) {
+    //        if accounts == nil {
+    //            return
+    //        }
+    //        sections = []
+    //
+    //        for account in accounts! {
+    //            var exist = false
+    //            let newSection = (account.name! as NSString).substring(to: 1).uppercased()
+    //            for section in sections! {
+    //                if newSection == section {
+    //                    exist = true
+    //                }
+    //            }
+    //            if !exist {
+    //                sections!.append(newSection)
+    //            }
+    //        }
+    //    }
+    
     //引数accountsでグローバル変数accountsを作り直す
     //※ appendSectionsより後に呼ぶ
-//    func appendAccounts(_ _accounts: [Account]?) {
-//        if _accounts == nil {
-//            return
-//        }
-//
-//        accounts = []
-//
-//        for _ in 0..<sections!.count {
-//            accounts!.append([])
-//        }
-//
-//        for account in _accounts! {
-//            var idx: Int?
-//            let targetSection = (account.name! as NSString).substring(to: 1).uppercased()
-//            for i in 0..<sections!.count {
-//                if targetSection == sections![i] {
-//                    idx = i
-//                }
-//            }
-//            accounts![idx!].append(account)
-//        }
-//    }
+    //    func appendAccounts(_ _accounts: [Account]?) {
+    //        if _accounts == nil {
+    //            return
+    //        }
+    //
+    //        accounts = []
+    //
+    //        for _ in 0..<sections!.count {
+    //            accounts!.append([])
+    //        }
+    //
+    //        for account in _accounts! {
+    //            var idx: Int?
+    //            let targetSection = (account.name! as NSString).substring(to: 1).uppercased()
+    //            for i in 0..<sections!.count {
+    //                if targetSection == sections![i] {
+    //                    idx = i
+    //                }
+    //            }
+    //            accounts![idx!].append(account)
+    //        }
+    //    }
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         print("textShouldEndEditing called!!")
-//        if obj.object is NSTextField {
-//            var field:NSTableView = obj.object as! NSTableView
-//            if field.identifier == NSUserInterfaceItemIdentifier("search1") {
-//                print("search1")
-//                ViewController.searchText = searchBar.stringValue == "" ? nil : searchBar.stringValue
-//                search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
-//            }
-//        }
+        //        if obj.object is NSTextField {
+        //            var field:NSTableView = obj.object as! NSTableView
+        //            if field.identifier == NSUserInterfaceItemIdentifier("search1") {
+        //                print("search1")
+        //                ViewController.searchText = searchBar.stringValue == "" ? nil : searchBar.stringValue
+        //                search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
+        //            }
+        //        }
         return true
     }
-//    override func controlTextDidEndEditing(_ obj: Notification) {
-//        saveDreams()
-//    }
+    //    override func controlTextDidEndEditing(_ obj: Notification) {
+    //        saveDreams()
+    //    }
 }
 //extention ViewController:searc{
 //
@@ -429,8 +546,3 @@ class TestClass{
         self.field3 = field3
     }
 }
-//class Dream : NSObject {
-//    @objc dynamic var name : String
-//    init(name : String) { self.name = name }
-//    override var description : String { return "Dream " + name }
-//}

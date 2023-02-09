@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  PasswordManagerForMac
+
+  Created by 倉知諒 on 2023/02/09.
+  
+*/
+"aplli_name" = "使いやすい！パスワード管理帳";
+
+"name" = "名前";
+"kana" = "読みがな";
+"Id" = "ID";
+"password" = "パスワード";
+"mailAddress" = "メールアドレス";
+"search" = "検索";
+"error_title" = "エラー";
+"error_sentence2" = "その名前はすでに使用されています";
+"error_sentence3" = "名前を入力してください";
+"error_sentence4" = "パスコードは4文字の半角数字で指定してください";
+"error_sentence5" = "パスコードが違います";
+"error_sentence6" = "同じ名前があります";
+"error_sentence7" = "名前を入力してください";
+"error_sentence8" = "少なくとも１つのカテゴリを作成して下さい";
+"error_sentence9" = "文字数は数字で指定してください";
+"sum" = "合計";
+"unit" = "件";
+"confirm_title" = "確認";
+"confirm_title2" = "注意！";
+"confirm_button_next" = "また今度";
+"confirm_sentence_delete" = "%@を削除しますか？";
+"confirm_sentence_change" = "以下の内容で変更してもよろしいですか？\n%@";
+"confirm_sentence_change2" = "以下の内容で変更してもよろしいですか？";
+"confirm_sentence_change3" = "カテゴリーを変更しますか？";
+"confirm_sentence_add" = "以下の内容で追加してもよろしいですか？\n%@";
+"confirm_sentence_setting" = "入力された内容で設定を変更します。\nよろしいですか？";
+"confirm_sentence_migration" = "データを引き継ぎますか？";
+"confirm_sentence_copy_to_clipboard" = "クリップボードに「%@」をコピーしました";
+"confirm_sentence_backup" = "バックアップを作成してもよろしいですか？";
+"confirm_sentence_generate" = "%@ を使用しますか？\n\n※上書きされます";
+"info_title" = "お知らせ";
+"info_sentence1" = "設定完了しました";
+"info_sentence2" = "バックアップテキストをクリップボードに貼り付けました。\nメモアプリなどに貼り付けて保管してください";
+"info_sentence3" = "バックアップのリストアが完了しました(%@件)";
+"const_add_edit_Done" = "完了";
+"const_add_edit_OK" = "OK";
+
+"account_rawName_name" =        "名前";
+"account_rawName_id" =          "ID";
+"account_rawName_password" =    "パスワード";
+"account_rawName_mail" =        "メール";
+"account_rawName_memo" =        "メモ";
+"account_rawName_category" =    "カテゴリー";
+
+"backup_text_header" = "★%@　バックアップ★\n　　　作成日時：%@";
+
+"categoryName_all" = "すべて";
+"categoryName_website" =    "ウェブサイト";
+"categoryName_mail" =       "メール";
+"categoryName_game" =       "ゲーム";
+"categoryName_sns" =        "SNS";
+"categoryName_work" =       "仕事";
+"categoryName_other" =      "その他";
+"categoryName_education" =  "教育";
+
+"categorySegmentAll" = "ALL";
+
+"TouchID_sentence" = "Face/Touch IDでロック解除できます";
+
+"deleteBtn_title" = "削除";
+"add_title" = "新規登録";
+
+"confirm_sentence_import" = "すべてのデータを削除してデータを置き換えます。\nよろしいですか？\n\n※※※※※※※※※※※※※※※※※※※※※※※※※※※\n バックアップを作成することを強くおすすめします\n※※※※※※※※※※※※※※※※※※※※※※※※※※※";
+"confirm_sentence_import2" = "すべてのデータを削除してデータを置き換えます。\nよろしいですか？";
+
+"restore_default_text" = "この欄の内容を全て消してからバックアップボタンで作成したテキストを入力してください。\n＜サンプル＞\n\n★使いやすい！パスワード管理帳　バックアップ★\n　　　作成日時：yyyy-mm-dd hh:mm:ss\n------------------------\n・名前：Apple\n・ID：id_sample\n・パスワード：password\n------------------------\n・名前：Apple2\n・ID：id_sample2\n・パスワード：password2";
+"copy" = "コピー";
+
+"confirm_save_current_state" = "現在のバックアップを作成しますか？";
+"unCategorized" = "未分類";
+"showing_text" = "表示中：%@";
+
+"restoreFromTextInitText" = "ここにバックアップテキストを貼り付けて読み込みボタンを押してください（このテキストは消してください）";
+"restoreListCellText" = "%@のバックアップ";

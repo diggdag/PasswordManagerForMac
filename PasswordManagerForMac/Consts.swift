@@ -7,8 +7,8 @@
 //
 import Cocoa
 class Consts {
-//    static let APLLINAME: String = NSLocalizedString("aplli_name", comment: "")
-    static let APLLINAME: String = "使いやすい！パスワード管理帳"
+    static let APLLINAME: String = NSLocalizedString("aplli_name", comment: "")
+//    static let APLLINAME: String = "使いやすい！パスワード管理帳"
     static let PASSCODE_LENGTH: Int = 4
 
     //-------
@@ -26,19 +26,19 @@ class Consts {
     static let ADMOB_TEST_DEVICE_ID_SE2: String = "05db8b8bb003e0b96c0467e6e889d6bd"
     //-------
 
-//    static let RAWNAME_NAME: String = NSLocalizedString("account_rawName_name", comment: "")
-//    static let RAWNAME_ID: String = NSLocalizedString("account_rawName_id", comment: "")
-//    static let RAWNAME_PASSWORD: String = NSLocalizedString("account_rawName_password", comment: "")
-//    static let RAWNAME_MAIL: String = NSLocalizedString("account_rawName_mail", comment: "")
-//    static let RAWNAME_MEMO: String = NSLocalizedString("account_rawName_memo", comment: "")
-//    static let RAWNAME_CATEGORY: String = NSLocalizedString("account_rawName_category", comment: "")
+    static let RAWNAME_NAME: String = NSLocalizedString("account_rawName_name", comment: "")
+    static let RAWNAME_ID: String = NSLocalizedString("account_rawName_id", comment: "")
+    static let RAWNAME_PASSWORD: String = NSLocalizedString("account_rawName_password", comment: "")
+    static let RAWNAME_MAIL: String = NSLocalizedString("account_rawName_mail", comment: "")
+    static let RAWNAME_MEMO: String = NSLocalizedString("account_rawName_memo", comment: "")
+    static let RAWNAME_CATEGORY: String = NSLocalizedString("account_rawName_category", comment: "")
 
-    static let RAWNAME_NAME: String = "名前"
-    static let RAWNAME_ID: String = "ID"
-    static let RAWNAME_PASSWORD: String = "パスワード"
-    static let RAWNAME_MAIL: String = "メール"
-    static let RAWNAME_MEMO: String = "メモ"
-    static let RAWNAME_CATEGORY: String = "カテゴリー"
+//    static let RAWNAME_NAME: String = "名前"
+//    static let RAWNAME_ID: String = "ID"
+//    static let RAWNAME_PASSWORD: String = "パスワード"
+//    static let RAWNAME_MAIL: String = "メール"
+//    static let RAWNAME_MEMO: String = "メモ"
+//    static let RAWNAME_CATEGORY: String = "カテゴリー"
 
     static let CONTROLCOLOR: NSColor = NSColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
 
@@ -63,21 +63,21 @@ class Consts {
     static let CATEGORY_WORK2_IMAGE: String = "category_work2"
     static let CATEGORY_OTHER2_IMAGE: String = "category_other2"
     
-//    static let CATEGORY_NAME_WEBSITE: String = NSLocalizedString("categoryName_website", comment: "")
-//    static let CATEGORY_NAME_MAIL: String = NSLocalizedString("categoryName_mail", comment: "")
-//    static let CATEGORY_NAME_GAME: String = NSLocalizedString("categoryName_game", comment: "")
-//    static let CATEGORY_NAME_SNS: String = NSLocalizedString("categoryName_sns", comment: "")
-//    static let CATEGORY_NAME_WORK: String = NSLocalizedString("categoryName_work", comment: "")
-//    static let CATEGORY_NAME_OTHER: String = NSLocalizedString("categoryName_other", comment: "")
-//    static let CATEGORY_NAME_EDUCATION: String = NSLocalizedString("categoryName_education", comment: "")
+    static let CATEGORY_NAME_WEBSITE: String = NSLocalizedString("categoryName_website", comment: "")
+    static let CATEGORY_NAME_MAIL: String = NSLocalizedString("categoryName_mail", comment: "")
+    static let CATEGORY_NAME_GAME: String = NSLocalizedString("categoryName_game", comment: "")
+    static let CATEGORY_NAME_SNS: String = NSLocalizedString("categoryName_sns", comment: "")
+    static let CATEGORY_NAME_WORK: String = NSLocalizedString("categoryName_work", comment: "")
+    static let CATEGORY_NAME_OTHER: String = NSLocalizedString("categoryName_other", comment: "")
+    static let CATEGORY_NAME_EDUCATION: String = NSLocalizedString("categoryName_education", comment: "")
     
-    static let CATEGORY_NAME_WEBSITE: String =      "ウェブサイト"
-    static let CATEGORY_NAME_MAIL: String =         "メール"
-    static let CATEGORY_NAME_GAME: String =         "ゲーム"
-    static let CATEGORY_NAME_SNS: String =          "SNS"
-    static let CATEGORY_NAME_WORK: String =         "仕事"
-    static let CATEGORY_NAME_OTHER: String =        "その他"
-    static let CATEGORY_NAME_EDUCATION: String =    "教育"
+//    static let CATEGORY_NAME_WEBSITE: String =      "ウェブサイト"
+//    static let CATEGORY_NAME_MAIL: String =         "メール"
+//    static let CATEGORY_NAME_GAME: String =         "ゲーム"
+//    static let CATEGORY_NAME_SNS: String =          "SNS"
+//    static let CATEGORY_NAME_WORK: String =         "仕事"
+//    static let CATEGORY_NAME_OTHER: String =        "その他"
+//    static let CATEGORY_NAME_EDUCATION: String =    "教育"
     static let CATEGORYNAME = [CATEGORY_NAME_WEBSITE,CATEGORY_NAME_MAIL,CATEGORY_NAME_GAME,CATEGORY_NAME_SNS,CATEGORY_NAME_WORK,CATEGORY_NAME_OTHER]
 
     static let CHECK_IMAGE: String = "check2"

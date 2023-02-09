@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  PasswordManagerForMac
+
+  Created by 倉知諒 on 2023/02/09.
+  
+*/
+"aplli_name" = "Easy to use! Password management book";
+
+"name" = "Name";
+"kana" = "Name(Identifier)";
+"Id" = "ID";
+"password" = "Password";
+"mailAddress" = "Email Address";
+"search" = "Search";
+"error_title" = "Error";
+"error_sentence2" = "Name(Identifier) was already registered";
+"error_sentence3" = "Please enter Name";
+"error_sentence4" = "Passcode must be 4 half numeric characters";
+"error_sentence5" = "Passcode is wrong";
+"error_sentence6" = "There are duplicate names";
+"error_sentence7" = "Please enter Name";
+"error_sentence8" = "Please create at least one category";
+"error_sentence9" = "Please specify the number of characters with numbers";
+"sum" = "Total";
+"unit" = "";
+"confirm_title" = "Confirm";
+"confirm_title2" = "Caution!";
+"confirm_button_next" = "Next time";
+"confirm_sentence_delete" = "Delete %@?";
+"confirm_sentence_change" = "Are you sure you want to change with the following contents?\n%@";
+"confirm_sentence_change2" = "Are you sure you want to change with the following contents?";
+"confirm_sentence_change3" = "Change category?";
+"confirm_sentence_add" = "Are you sure you want to add it with the following contents?\n%@";
+"confirm_sentence_setting" = "Change the setting with the entered contents.\nIs it OK?";
+"confirm_sentence_copy_to_clipboard" = "Copied the 「%@」 to the clipboard";
+"confirm_sentence_backup" = "Are you sure you want to create a backup?";
+"confirm_sentence_generate" = "overwrite %@ ?";
+"info_title" = "Information";
+"info_sentence1" = "Setting is completed";
+"info_sentence2" = "Backup text was pasted on the clipboard.\nPlease paste it on memo applet etc and keep it";
+"info_sentence3" = "Restoration of backup completed (count:%@)";
+"const_add_edit_Done" = "Done";
+"const_add_edit_OK" = "OK";
+
+"account_rawName_name" =        "name";
+"account_rawName_id" =          "id";
+"account_rawName_password" =    "password";
+"account_rawName_mail" =        "mail";
+"account_rawName_memo" =        "memo";
+"account_rawName_category" =    "category";
+"categoryName_education" = "education";
+
+"backup_text_header" = "★%@ Backup★\n   Creation date:%@";
+
+"categoryName_all" = "all";
+"categoryName_website" = "Web site";
+"categoryName_mail" = "Mail";
+"categoryName_game" = "Game";
+"categoryName_sns" = "SNS";
+"categoryName_work" = "Work";
+"categoryName_other" = "Other";
+
+"categorySegmentAll" = "All";
+
+"TouchID_sentence" = "You can unlock with Face/Touch ID";
+"deleteBtn_title" = "delete";
+
+"add_title" = "New";
+
+"confirm_sentence_import" = "Delete all data and replace it.\n Are you sure?\n\n※※※※※※※※※※※※※※※※※※※※※※※※※※※\nRecommended to make a backup\n※※※※※※※※※※※※※※※※※※※※※※※※※※※";
+
+"confirm_sentence_import2" = "Delete all data and replace it.\n Are you sure?";
+
+
+"restore_default_text" = "Please include backup text here.\n<Sample>\n\n★Easy to use! Password management book Backup★\n   Creation date:yyyy-mm-dd hh:mm:ss\n------------------------\n・name：Apple\n・ID：id_sample\n・password：password\n------------------------\n・name：Apple2\n・ID：id_sample2\n・password：password2";
+
+"copy" = "copy";
+
+"confirm_save_current_state" = "Create a backup of the current state?";
+"unCategorized" = "Uncategorized";
+"showing_text" = "Showing：%@";
+
+"restoreFromTextInitText" = "Please Paste the backup text here and press the button below.(Please Delete this text)";
+"restoreListCellText" = "%@backup";

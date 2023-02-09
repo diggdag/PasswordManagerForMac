@@ -47,3 +47,7 @@ enum Category: Int16 {
         }
     }
 }
+enum ButtonTag: Int {
+    case Ok = 100
+    case Cancel = 200
+}
