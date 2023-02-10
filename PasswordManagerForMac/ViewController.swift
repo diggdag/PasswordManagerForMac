@@ -26,7 +26,12 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBOutlet weak var searchBar: NSSearchField!
     //    @IBOutlet weak var searchBarText: NSSearchFieldCell!
     //    @objc dynamic var selectedIndexes = IndexSet()
+    @IBOutlet var categoryWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var segmentedCell: NSSegmentedCell!
+    @IBOutlet var selectedCategoryText: NSTextField!
+    @IBOutlet var category: NSSegmentedControl!
     
+    //追加ボタン
     @IBAction func addaction(_ sender: Any) {
         print("addaction called")
         
@@ -85,6 +90,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 //検索条件を消してサーチし直し
                 ViewController.searchText = name
                 searchBar.stringValue = name
+                ViewController.selectedCategory = nil
+                category.setSelected(true, forSegment: 0)
                 search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
                 return true
             }
@@ -94,7 +101,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             }
             return false
         }
-        let answer = dialogOKCancel(question: "Ok?", text: "name?")
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_add", comment: ""), text: "")
     }
     
     override func viewDidLoad() {
@@ -151,10 +158,10 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     //test code
     func testCategoryAdd(){
         
-        settings.append(_CategorySetting(no: 0, name: "test_web", imageNo: 0))
-        settings.append(_CategorySetting(no: 1, name: "test_game", imageNo: 1))
-        settings.append(_CategorySetting(no: 2, name: "test_sns", imageNo: 2))
-        settings.append(_CategorySetting(no: 3, name: "test_work", imageNo: 3))
+        settings.append(_CategorySetting(no: 0, name: "web", imageNo: 0))
+        settings.append(_CategorySetting(no: 1, name: "mail", imageNo: 1))
+        settings.append(_CategorySetting(no: 2, name: "game", imageNo: 2))
+        settings.append(_CategorySetting(no: 3, name: "sns", imageNo: 3))
         var name:[String] = []
         var imageNo:[Int] = []
         for setting in self.settings{
@@ -199,11 +206,11 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         if ViewController.searchText != nil {
             searchBar.stringValue = ViewController.searchText!
         }
-        //        if ViewController.selectedCategory != nil {
-        //            category.selectedSegmentIndex = Int((ViewController.selectedCategory?.no)!) + 1
-        //        }
+        if ViewController.selectedCategory != nil {
+            category.selectedSegment = Int((ViewController.selectedCategory?.no)!) + 1
+        }
         Utilities.refreshSettings()
-        //        setCategorySegment()
+        setCategorySegment()
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
         
         mymenu.removeAllItems()
@@ -230,6 +237,46 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         }
     }
     
+    //カテゴリーセグメントの設定
+    func setCategorySegment() {
+        print("setCategorySegment called")
+        segmentedCell.segmentCount = Utilities.settings.count + 1
+        print("segments counts :\(Utilities.settings.count + 1)")
+//        category.removeAllSegments()
+        
+//        category.insertSegment(withTitle: NSLocalizedString("categorySegmentAll", comment: ""), at: 0, animated: false)
+        segmentedCell.setLabel(NSLocalizedString("categorySegmentAll", comment: ""), forSegment: 0)
+        settingKeys = []
+        categoryWidthConstraint.constant = CGFloat((Utilities.settings.count + 1) * 50)
+        for (index,_) in Utilities.settings.enumerated(){//Utilities.settingsはDictionaryえでありno順に並べる為のfor
+            for key in Utilities.settings.keys{
+                let setting = Utilities.settings[key]
+                if (index == setting!.no){
+                    settingKeys?.append(key)
+//                    category.insertSegment(withTitle: setting?.name, at: Int(1 + setting!.no), animated: false)
+                    let targetIndex = Int(1 + setting!.no)
+                    segmentedCell.setLabel((setting?.name)!, forSegment: targetIndex)
+                    category.setWidth(50, forSegment: targetIndex)
+                }
+            }
+        }
+        settingKeys = settingKeys?.sorted(by:{ (a,b) -> Bool in
+            return a < b
+        })//多分無駄な処理
+
+        //選択されているカテゴリーを設定する
+        if ViewController.selectedCategory == nil{
+            category.selectedSegment = 0
+        }
+        else{
+            for (index,key) in (settingKeys?.enumerated())!{
+                if (Int(key) == Int(ViewController.selectedCategory!.no)){
+                    category.selectedSegment = index + 1
+                }
+            }
+        }
+        selectedCategoryText.stringValue = String(format: NSLocalizedString("showing_text", comment: ""), arguments: [NSLocalizedString("categoryName_all", comment: "")])
+    }
     override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
@@ -256,6 +303,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     func tableViewSelectionDidChange(_ notification: Notification){
         //        print("tableViewSelectionDidChange called!!")
     }
+    
+    //テーブルに値設定
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
         //        let account: Account = accounts![indexPath.section][indexPath.row]
         //
@@ -464,6 +513,27 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             //            else if field.identifier == NSUserInterfaceItemIdentifier("search2") {
             //                print("search2")//test
             //            }
+        }
+    }
+    func changeCategory(category: _CategorySetting?) {
+        ViewController.selectedCategory = category
+        search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
+    }
+    
+    //カテゴリー値変更イベントハンドラ
+    @IBAction func valueChanged(_ sender: Any) {
+        print("category value changed called! selected index:\(category.selectedSegment)")
+        
+//        let segment: UISegmentedControl = sender as! UISegmentedControl
+        //ALL
+        if category.selectedSegment == 0{
+            changeCategory(category: nil)
+            selectedCategoryText.stringValue = String(format: NSLocalizedString("showing_text", comment: ""), arguments: [NSLocalizedString("categoryName_all", comment: "")])
+        }
+        else{
+            let setting = Utilities.settings[settingKeys![category.selectedSegment - 1]]
+            changeCategory(category: _CategorySetting(no: setting!.no, name: setting?.name, imageNo: setting!.imageNo))
+            selectedCategoryText.stringValue = String(format: NSLocalizedString("showing_text", comment: ""), arguments: [setting!.name!])
         }
     }
     //引数accountsでグローバル変数sectionsを作り直す

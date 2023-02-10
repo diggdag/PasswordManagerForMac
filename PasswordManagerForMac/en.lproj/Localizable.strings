@@ -83,3 +83,4 @@
 
 "restoreFromTextInitText" = "Please Paste the backup text here and press the button below.(Please Delete this text)";
 "restoreListCellText" = "%@backup";
+"confirm_add" = "Please input name";
