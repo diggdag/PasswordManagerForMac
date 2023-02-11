@@ -214,6 +214,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
         
         mymenu.removeAllItems()
+        //おそらく順番を担保するためのfor(1個目)
         for (index,_) in Utilities.settings.enumerated(){
             for key in Utilities.settings.keys{
                 let setting = Utilities.settings[key]
