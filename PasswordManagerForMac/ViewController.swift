@@ -203,6 +203,9 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     override func viewWillAppear() {
         super.viewWillAppear()
         print("viewWillAppear")
+        initializeSetting()
+    }
+    func initializeSetting() {
         if ViewController.searchText != nil {
             searchBar.stringValue = ViewController.searchText!
         }
@@ -413,7 +416,25 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         }
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
     }
-    
+    //子でdismissすると謎の圧力でこれが呼ばれる
+//    override func dismiss(_ viewController: NSViewController) {
+//        print("dismiss called!\(viewController)")
+//        dismiss(viewController)
+//        initializeSetting()
+//    }
+    @IBAction func touchDown_tocategory(_ sender: Any) {
+        performSegue(withIdentifier: "toCustom", sender: self)
+//        presentAsModalWindow(ViewController_categoryEditing())
+//        present(ViewController_categoryEditing(), animator: nil)
+    }
+    //遷移する際の処理/
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCustom" {
+            let svc = segue.destinationController as! ViewController_categoryEditing
+            svc.parentVC = self
+            
+        }
+    }
     //アラートを表示するメソッド
     func showAlert(myTitle: String, mySentence: String) {
         let alert = NSAlert()

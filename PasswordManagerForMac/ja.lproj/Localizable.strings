@@ -20,7 +20,7 @@
 "error_sentence5" = "パスコードが違います";
 "error_sentence6" = "同じ名前があります";
 "error_sentence7" = "名前を入力してください";
-"error_sentence8" = "少なくとも１つのカテゴリを作成して下さい";
+"error_sentence8" = "カテゴリは少なくとも１つ以上必要です";
 "error_sentence9" = "文字数は数字で指定してください";
 "sum" = "合計";
 "unit" = "件";

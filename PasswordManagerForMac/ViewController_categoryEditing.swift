@@ -11,10 +11,12 @@ import Cocoa
 class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTableViewDataSource{
     
     @IBOutlet var tableView: NSTableView!
+    @IBOutlet var deleteBtn: NSButtonCell!
     var preSettings: [_CategorySetting] = []
     var settings: [_CategorySetting] = []
     var receiveImageNo:Int = 0
     var selectedRow:Int = 0
+    var parentVC:ViewController? = nil
     // セルのUTI
     let DRAG_TYPE = "public.data"
     @IBOutlet var mymenu: NSMenu!
@@ -50,7 +52,9 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
     }
     override func viewWillAppear() {
         super.viewWillAppear()
-        
+        initializeSetting()
+    }
+    func initializeSetting() {
         //リストのメニューの設定
         mymenu.removeAllItems()
         
@@ -69,7 +73,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                 if index == key {
                     var item = NSMenuItem()
                     item.image = image
-//                    item.title = setting!.name!
+                    item.title = ""
                     mymenu.addItem(item)
                 }
             }
@@ -96,29 +100,37 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_category_name") {
             return settings[row].name!
         }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_delete") {
-//            return NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil)
-            return "delete"
-
-//            var btn  = NSButton()
-//            btn.image = NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil)
-//            return btn
-
-//            btn.action = Selector("btnAction")
-
-//            var cell = NSButtonCell(imageCell: NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil))
-//            return cell
-
-//            var cell = NSButtonCell(textCell: "delete")
-//            return settings[row].name!//test
-        }
+//        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_delete") {
+////            return NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil)
+//            return "delete"
+//
+////            var btn  = NSButton()
+////            btn.image = NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil)
+////            return btn
+//
+////            btn.action = Selector("btnAction")
+//
+////            var cell = NSButtonCell(imageCell: NSImage(systemSymbolName: "trash.fill", accessibilityDescription: nil))
+////            return cell
+//
+////            var cell = NSButtonCell(textCell: "delete")
+////            return settings[row].name!//test
+//        }
         return "undef"
     }
     func btnAction()  {
+        if(tableView.selectedRow == -1){
+            return;
+        }
         settings.remove(at: tableView.selectedRow)
         tableView.reloadData()
     }
     
+    func tableViewSelectionDidChange(_ notification: Notification){
+        print("tableViewSelectionDidChange called!!")
+        deleteBtn.isEnabled = true
+        selectedRow = tableView.selectedRow//消したい
+    }
     func numberOfRows(in tableView: NSTableView) -> Int{
         return settings.count
     }
@@ -128,8 +140,166 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                 }
                 return []
     }
-    @IBAction func deleteBtnPush(_ sender: Any) {
+    
+    func tableView(_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int){
+        print("setObjectValue called!!table column id:\(tableColumn?.identifier),object:\(object)")
+        if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_image") {
+            settings[tableView.selectedRow].imageNo = object as! Int16
+        }
+        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_category_name") {
+            var name = object as? String
+            //validation start----------------------
+            //名前は必須
+            if(name == "") {
+                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                return
+            }
+            //重複した名前がないか
+            var duplication = false
+            for setting in settings{
+                for _setting in settings{
+                    if setting.no != _setting.no && setting.name == _setting.name {
+                        duplication = true
+                    }
+                    
+                }
+            }
+            if(duplication) {
+                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence6", comment: ""))//同じ名前があります
+                return
+            }
+            //validation end----------------------
+            settings[tableView.selectedRow].name = name
+        }
+        tableView.reloadData()
+    }
+//    //ViewController_categoryImageクラスから呼ばれる
+//    func setImage(imageNo: Int16,name:String) {
+//        settings[selectedRow].imageNo = imageNo
+//        settings[selectedRow].name = name
+//        tableView.reloadData()
+//    }
+    @IBAction func touchDown_add(_ sender: Any) {
+        settings.insert(_CategorySetting(no: Int16(settings.count), name: "", imageNo: 0), at: settings.count)
+        tableView.reloadData()
+    }
+    @IBAction func touchDown_delete(_ sender: Any) {
+        //validation start----------------------
+        //カテゴリーが１つ以上存在するか
+        if(settings.count == 1) {
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence8", comment: ""))//少なくとも１つのカテゴリを作成して下さい
+            return
+        }
         btnAction()
+    }
+    @IBAction func touchDown_Done(_ sender: Any) {
+        
+        do{
+            let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+
+            //アカウント（グループごと）
+            var accountsInCategory:[[Account]] = []
+            for (_,preSetting) in self.preSettings.enumerated(){
+                var accounts:[Account] = []
+                let request: NSFetchRequest<Account> = Account.fetchRequest()
+                let predicate = NSPredicate(format: "%K = %d", "category", preSetting.no)
+                request.predicate = predicate
+                
+                do {
+                    let fetchResults = try viewContext.fetch(request)
+                    for result: AnyObject in fetchResults {
+                        let account = result as! Account
+                        accounts.append(account)
+                    }
+                } catch {
+                }
+                accountsInCategory.append(accounts)
+            }
+            
+            //アカウントのカテゴリーをアップデート
+            for (index, accounts) in accountsInCategory.enumerated(){
+                for accoount in accounts{
+                    let request: NSFetchRequest<Account> = Account.fetchRequest()
+                    let predicate = NSPredicate(format: "name = %@", accoount.name!)
+                    request.predicate = predicate
+                    do {
+                        let fetchResults = try viewContext.fetch(request)
+                        for result: AnyObject in fetchResults {//1つ
+                        let record = result as! NSManagedObject
+                        var cat = 0
+                        var exist = false
+                        for (_index,setting) in self.settings.enumerated(){//変更後のカテゴリー
+                            if setting.no == index{
+                                exist = true
+                                cat = _index
+                                break
+                            }
+                        }
+                        if exist{
+                            record.setValue(cat, forKey: "category")
+                        }
+                        else{
+                            //存在しない場合未登録
+                            record.setValue(Int16.max, forKey: "category")
+                        }
+                        }
+                        try viewContext.save()
+                    } catch {
+                    }
+                }
+            }
+            
+            
+        }
+        var name:[String] = []
+        var imageNo:[Int] = []
+        for setting in self.settings{
+            name.append(setting.name!)
+            imageNo.append(Int(setting.imageNo))
+        }
+        //全削除
+        do{
+            let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            let request: NSFetchRequest<CategorySetting> = CategorySetting.fetchRequest()
+            do {
+                let fetchResults = try viewContext.fetch(request)
+                for result: AnyObject in fetchResults {
+                    let record = result as! NSManagedObject
+                    viewContext.delete(record)
+                }
+                try viewContext.save()
+            } catch {
+            }
+        }
+        
+        //カテゴリ設定テーブルを設定し直す
+        do {
+            let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            //insert
+            for (index,_) in self.settings.enumerated(){
+                let setting = NSEntityDescription.entity(forEntityName: "CategorySetting", in: viewContext)
+                let newRecord = NSManagedObject(entity: setting!, insertInto: viewContext)
+                newRecord.setValue(index, forKey: "no")
+                newRecord.setValue(name[index], forKey: "name")
+                newRecord.setValue(imageNo[index], forKey: "imageNo")
+//                appDelegate.saveContext()
+                appDelegate.saveAction(nil)
+            }
+        }
+        ViewController.selectedCategory = nil
+//        parent?.viewWillAppear()
+        parentVC?.viewWillAppear()
+        //遷移元の画面に戻る
+//        self.pop.navigationController?.popViewController(animated: true)
+        self.dismiss(self)
+//        self.navigaion
+//        self.performSegue(withIdentifier: <#T##NSStoryboardSegue.Identifier#>, sender: <#T##Any?#>)
+//        self.
+//        dismiss("hoge")
+//        initializeSetting()
     }
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool{
         
@@ -161,6 +331,9 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                            settings.remove(at: oldIndex)
                            settings.insert(setting, at: to)
                            tableView.reloadData()
+                           //ここで移動先の行をアクティブにしたい TODO
+                           let indexSet = NSIndexSet(index: row)
+                           tableView.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
                        }
                        tableView.endUpdates()
                        return true
@@ -168,5 +341,36 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                    print("failed")
                }
                return false
+    }
+    //アラートを表示するメソッド
+    func showAlert(myTitle: String, mySentence: String) {
+        let alert = NSAlert()
+        alert.alertStyle = NSAlert.Style.warning
+        alert.messageText = mySentence
+        alert.informativeText = myTitle
+        alert.icon = NSImage(named: NSImage.computerName)
+        
+        let ok = alert.addButton(withTitle: "Ok")
+        ok.image = NSImage(named: NSImage.actionTemplateName)
+        ok.imagePosition = NSControl.ImagePosition.imageLeft
+        ok.tag = ButtonTag.Ok.rawValue
+        
+        //            let cancel = alert.addButton(withTitle: "Cancel")
+        //            cancel.tag = ButtonTag.Cancel.rawValue
+        
+        // alert.runModal()
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            switch response.rawValue
+            {
+            case ButtonTag.Ok.rawValue:
+                print("OK")
+                break
+                //                case ButtonTag.Cancel.rawValue:
+                //                    print("Cancel")
+                //                    break
+            default:
+                print("invalid")
+            }
+        })
     }
 }

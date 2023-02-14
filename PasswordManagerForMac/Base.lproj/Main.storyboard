@@ -975,6 +975,17 @@
                                     <action selector="addaction:" target="XfG-lQ-9wD" id="J9J-0C-Ls5"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMd-TA-RZh">
+                                <rect key="frame" x="342" y="177" width="119" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="カテゴリー編集" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tk9-JL-dDq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_tocategory:" target="XfG-lQ-9wD" id="5Pj-RF-9OY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Dwr-mh-VLh" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="39" id="228-fE-OTY"/>
@@ -989,6 +1000,7 @@
                         <outlet property="segmentedCell" destination="yB0-co-305" id="EE6-i5-SP1"/>
                         <outlet property="selectedCategoryText" destination="qSj-3x-C8T" id="Nxb-03-R5c"/>
                         <outlet property="tableView" destination="cdG-dw-G0d" id="Lty-zu-4Yf"/>
+                        <segue destination="cbS-eC-QZj" kind="modal" identifier="toCustom" id="VMW-Vw-Tf6"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1018,14 +1030,14 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="col_image" width="116" minWidth="40" maxWidth="1000" id="myj-kT-qQb">
+                                                <tableColumn identifier="col_image" width="49" minWidth="40" maxWidth="1000" id="myj-kT-qQb">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <popUpButtonCell key="dataCell" type="bevel" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="bezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="awa-x6-NG8" id="u4C-yI-4CW">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" id="imJ-Ea-Kz0">
                                                             <items>
                                                                 <menuItem title="Item 1" state="on" image="category_website" id="awa-x6-NG8"/>
@@ -1045,21 +1057,6 @@
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                </tableColumn>
-                                                <tableColumn identifier="col_delete" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="po2-4R-40C">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="lxk-DI-1Xg">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <connections>
-                                                            <action selector="deleteBtnPush:" target="cbS-eC-QZj" id="cU4-rb-XkB"/>
-                                                        </connections>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
@@ -1084,9 +1081,43 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEg-lc-unA">
+                                <rect key="frame" x="214" y="227" width="71" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="行削除" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D7T-7F-0GR">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="touchDown_delete:" target="cbS-eC-QZj" id="3Q5-L3-EcE"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gpf-L6-MU0">
+                                <rect key="frame" x="303" y="227" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="追加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U90-rC-Pa5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_add:" target="cbS-eC-QZj" id="71Q-5O-WGl"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTP-Kk-gEd">
+                                <rect key="frame" x="368" y="227" width="59" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="適用" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uvF-tq-jez">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_Done:" target="cbS-eC-QZj" id="geX-mn-Nhv"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="deleteBtn" destination="D7T-7F-0GR" id="DwO-84-kPL"/>
                         <outlet property="mymenu" destination="imJ-Ea-Kz0" id="I9L-NA-fv1"/>
                         <outlet property="tableView" destination="ulh-KQ-EGx" id="hx9-wF-h5o"/>
                     </connections>
@@ -1096,6 +1127,9 @@
             <point key="canvasLocation" x="603" y="670"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VMW-Vw-Tf6"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="category_game" width="512" height="512"/>
         <image name="category_website" width="512" height="512"/>
