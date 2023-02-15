@@ -22,6 +22,8 @@
 "error_sentence7" = "Please enter Name";
 "error_sentence8" = "Please create at least one category";
 "error_sentence9" = "Please specify the number of characters with numbers";
+"error_sentence10" = "Please create at least one category";
+"error_sentence11" = "Please select image";
 "sum" = "Total";
 "unit" = "";
 "confirm_title" = "Confirm";

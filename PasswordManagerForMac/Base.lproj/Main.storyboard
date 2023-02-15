@@ -22,11 +22,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
-                                            <connections>
-                                                <segue destination="cbS-eC-QZj" kind="modal" id="hR3-XP-LQF"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -965,9 +961,9 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-cU-uiL">
-                                <rect key="frame" x="253" y="165" width="59" height="32"/>
+                                <rect key="frame" x="254" y="165" width="57" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="追加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QLq-V4-f7a">
+                                <buttonCell key="cell" type="push" title="add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QLq-V4-f7a">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -976,9 +972,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMd-TA-RZh">
-                                <rect key="frame" x="342" y="177" width="119" height="32"/>
+                                <rect key="frame" x="344" y="177" width="115" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="カテゴリー編集" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tk9-JL-dDq">
+                                <buttonCell key="cell" type="push" title="category edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tk9-JL-dDq">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1082,9 +1078,9 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEg-lc-unA">
-                                <rect key="frame" x="214" y="227" width="71" height="32"/>
+                                <rect key="frame" x="201" y="227" width="98" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="行削除" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D7T-7F-0GR">
+                                <buttonCell key="cell" type="push" title="delete row" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="D7T-7F-0GR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -1093,9 +1089,9 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gpf-L6-MU0">
-                                <rect key="frame" x="303" y="227" width="59" height="32"/>
+                                <rect key="frame" x="304" y="227" width="57" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="追加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U90-rC-Pa5">
+                                <buttonCell key="cell" type="push" title="add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U90-rC-Pa5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1104,9 +1100,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTP-Kk-gEd">
-                                <rect key="frame" x="368" y="227" width="59" height="32"/>
+                                <rect key="frame" x="364" y="227" width="68" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="適用" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uvF-tq-jez">
+                                <buttonCell key="cell" type="push" title="apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uvF-tq-jez">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1127,9 +1123,6 @@
             <point key="canvasLocation" x="603" y="670"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="VMW-Vw-Tf6"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="category_game" width="512" height="512"/>
         <image name="category_website" width="512" height="512"/>

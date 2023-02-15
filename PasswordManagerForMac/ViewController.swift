@@ -162,6 +162,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         settings.append(_CategorySetting(no: 1, name: "mail", imageNo: 1))
         settings.append(_CategorySetting(no: 2, name: "game", imageNo: 2))
         settings.append(_CategorySetting(no: 3, name: "sns", imageNo: 3))
+        settings.append(_CategorySetting(no: 4, name: "work", imageNo: 4))
         var name:[String] = []
         var imageNo:[Int] = []
         for setting in self.settings{
@@ -331,7 +332,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 //                return Category(rawValue:Utilities.settings[ accounts![row].category]!.imageNo)!.image()
             }
             else{
-                return 0
+                return -1
             }
             //            return accounts![row].category;
         }

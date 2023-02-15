@@ -86,6 +86,9 @@
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
 "Bw7-FT-i3A.title" = "Save As…";
 
+/* Class = "NSButtonCell"; title = "行削除"; ObjectID = "D7T-7F-0GR"; */
+"D7T-7F-0GR.title" = "行削除";
+
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
 "DVo-aG-piG.title" = "Close";
 
@@ -137,8 +140,8 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Open…";
 
-/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "IC0-eR-n17"; */
-"IC0-eR-n17.title" = "Label";
+/* Class = "NSTextFieldCell"; title = "表示中：ウェブサイト（ダミー）"; ObjectID = "IC0-eR-n17"; */
+"IC0-eR-n17.title" = "表示中：ウェブサイト（ダミー）";
 
 /* Class = "NSWindow"; title = "Window"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "Window";
@@ -215,8 +218,14 @@
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
 "S0p-oC-mLd.title" = "Jump to Selection";
 
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "TN0-mQ-Jz8"; */
+"TN0-mQ-Jz8.title" = "Item 3";
+
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Window";
+
+/* Class = "NSButtonCell"; title = "追加"; ObjectID = "U90-rC-Pa5"; */
+"U90-rC-Pa5.title" = "追加";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "Capitalize";
@@ -281,6 +290,12 @@
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
 "agt-UL-0e3.title" = "Use Default";
 
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "awa-x6-NG8"; */
+"awa-x6-NG8.title" = "Item 1";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "bUz-yd-Gg1"; */
+"bUz-yd-Gg1.title" = "Item 2";
+
 /* Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk"; */
 "bgn-CT-cEk.title" = "Show Colors";
 
@@ -344,6 +359,9 @@
 /* Class = "NSMenuItem"; title = "Show Sidebar"; ObjectID = "kIP-vf-haE"; */
 "kIP-vf-haE.title" = "Show Sidebar";
 
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "m8w-9r-1Z2"; */
+"m8w-9r-1Z2.title" = "Text Cell";
+
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
 "mK6-2p-4JG.title" = "Check Grammar With Spelling";
 
@@ -386,6 +404,9 @@
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "Open Recent";
 
+/* Class = "NSButtonCell"; title = "category edit"; ObjectID = "tk9-JL-dDq"; */
+"tk9-JL-dDq.title" = "カテゴリー編集";
+
 /* Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM"; */
 "tlD-Oa-oAM.title" = "Kern";
 
@@ -403,6 +424,9 @@
 
 /* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "ucn-9K-M52"; */
 "ucn-9K-M52.title" = "Item 2";
+
+/* Class = "NSButtonCell"; title = "適用"; ObjectID = "uvF-tq-jez"; */
+"uvF-tq-jez.title" = "適用";
 
 /* Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH"; */
 "vKC-jM-MkH.title" = "Paste Style";

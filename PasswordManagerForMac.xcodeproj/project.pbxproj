@@ -34,10 +34,10 @@
 		CF3B20C929908A770071F111 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		CF3B20CA29908A780071F111 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CF3B20CE29908B2B0071F111 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CF3DA4E9299507A800F9C465 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		CF3DA4ED2995085800F9C465 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF3DA4EF2995085C00F9C465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_categoryEditing.swift; sourceTree = "<group>"; };
+		CF85CFF2299B721E002E661A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		CFFA39E1298AB42E00290195 /* PasswordManagerForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordManagerForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFA39E4298AB42E00290195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFA39E6298AB42E00290195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CFFA39EE298AB43000290195 /* Base */,
-				CF3DA4E9299507A800F9C465 /* ja */,
+				CF85CFF2299B721E002E661A /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

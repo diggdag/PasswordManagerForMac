@@ -180,20 +180,63 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
 //        tableView.reloadData()
 //    }
     @IBAction func touchDown_add(_ sender: Any) {
-        settings.insert(_CategorySetting(no: Int16(settings.count), name: "", imageNo: 0), at: settings.count)
+        settings.insert(_CategorySetting(no: Int16(settings.count), name: "", imageNo: -1), at: settings.count)
         tableView.reloadData()
     }
     @IBAction func touchDown_delete(_ sender: Any) {
         //validation start----------------------
         //カテゴリーが１つ以上存在するか
         if(settings.count == 1) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence8", comment: ""))//少なくとも１つのカテゴリを作成して下さい
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence10", comment: ""))//少なくとも１つのカテゴリを作成して下さい
             return
         }
         btnAction()
     }
     @IBAction func touchDown_Done(_ sender: Any) {
         
+        //validation start----------------------
+        //カテゴリーが１つ以上存在するか
+        if(settings.count == 0) {
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence8", comment: ""))//少なくとも１つのカテゴリを作成して下さい
+            return
+        }
+        //名前が空白のカテゴリーが存在しないか
+        var isEmptyOrNil = false
+        for setting in settings{
+            if setting.name == "" || setting.name == nil {
+                isEmptyOrNil = true
+            }
+        }
+        if(isEmptyOrNil) {
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence7", comment: ""))//名前を入力してください
+            return
+        }
+        //重複した名前がないか
+        var duplication = false
+        for setting in settings{
+            for _setting in settings{
+                if setting.no != _setting.no && setting.name == _setting.name {
+                    duplication = true
+                }
+                
+            }
+        }
+        if(duplication) {
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence6", comment: ""))//同じ名前があります
+            return
+        }
+        //選択していないカテゴリが存在していないか
+        var notSelectCategory = false
+        for setting in settings{
+            if setting.imageNo == -1{
+                notSelectCategory = true
+            }
+        }
+        if(notSelectCategory) {
+            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence11", comment: ""))//イメージを選択してください
+            return
+        }
+        //validation end----------------------
         do{
             let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
             let viewContext = appDelegate.persistentContainer.viewContext
