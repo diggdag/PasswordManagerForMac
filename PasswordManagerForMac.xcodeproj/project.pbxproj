@@ -13,6 +13,8 @@
 		CF3B20CF29908B2B0071F111 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF3B20CE29908B2B0071F111 /* Images.xcassets */; };
 		CF3DA4EC2995085800F9C465 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF3DA4EE2995085800F9C465 /* Localizable.strings */; };
 		CF3DA4F129969D6800F9C465 /* ViewController_categoryEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */; };
+		CF85CFF4299C7F10002E661A /* ViewController_popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFF3299C7F10002E661A /* ViewController_popup.swift */; };
+		CF85CFF6299C8C66002E661A /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFF5299C8C66002E661A /* Extentions.swift */; };
 		CFFA39E5298AB42E00290195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E4298AB42E00290195 /* AppDelegate.swift */; };
 		CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E6298AB42E00290195 /* ViewController.swift */; };
 		CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */; };
@@ -38,6 +40,8 @@
 		CF3DA4EF2995085C00F9C465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_categoryEditing.swift; sourceTree = "<group>"; };
 		CF85CFF2299B721E002E661A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		CF85CFF3299C7F10002E661A /* ViewController_popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_popup.swift; sourceTree = "<group>"; };
+		CF85CFF5299C8C66002E661A /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		CFFA39E1298AB42E00290195 /* PasswordManagerForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordManagerForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFA39E4298AB42E00290195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFA39E6298AB42E00290195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,8 +103,10 @@
 				CF3B20C929908A770071F111 /* Consts.swift */,
 				CF3B20C829908A770071F111 /* Enums.swift */,
 				CF3B20CA29908A780071F111 /* Utilities.swift */,
+				CF85CFF5299C8C66002E661A /* Extentions.swift */,
 				CFFA39E4298AB42E00290195 /* AppDelegate.swift */,
 				CFFA39E6298AB42E00290195 /* ViewController.swift */,
+				CF85CFF3299C7F10002E661A /* ViewController_popup.swift */,
 				CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */,
 				CFFA39ED298AB43000290195 /* Main.storyboard */,
 				CFFA39F0298AB43000290195 /* PasswordManagerForMac.entitlements */,
@@ -184,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF85CFF4299C7F10002E661A /* ViewController_popup.swift in Sources */,
 				CFFA3A25298BA10B00290195 /* CategorySetting+CoreDataProperties.swift in Sources */,
 				CFFA3A23298BA10B00290195 /* Backup+CoreDataProperties.swift in Sources */,
 				CFFA3A21298BA10B00290195 /* Account+CoreDataProperties.swift in Sources */,
@@ -191,6 +198,7 @@
 				CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */,
 				CFFA3A27298BA18000290195 /* _CategorySetting.swift in Sources */,
 				CFFA3A20298BA10B00290195 /* Account+CoreDataClass.swift in Sources */,
+				CF85CFF6299C8C66002E661A /* Extentions.swift in Sources */,
 				CFFA3A24298BA10B00290195 /* CategorySetting+CoreDataClass.swift in Sources */,
 				CF3B20CB29908A780071F111 /* Enums.swift in Sources */,
 				CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */,

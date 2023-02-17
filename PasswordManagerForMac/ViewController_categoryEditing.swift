@@ -332,7 +332,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                 appDelegate.saveAction(nil)
             }
         }
-        ViewController.selectedCategory = nil
+        ViewController.selectedCategory = nil//TODO 移植元も一応こうなっているが...
 //        parent?.viewWillAppear()
         parentVC?.viewWillAppear()
         //遷移元の画面に戻る
@@ -374,8 +374,8 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                            settings.remove(at: oldIndex)
                            settings.insert(setting, at: to)
                            tableView.reloadData()
-                           //ここで移動先の行をアクティブにしたい TODO
-                           let indexSet = NSIndexSet(index: row)
+                           //移動先の行をアクティブにする
+                           let indexSet = NSIndexSet(index: to)
                            tableView.selectRowIndexes(indexSet as IndexSet, byExtendingSelection: false)
                        }
                        tableView.endUpdates()

@@ -51,3 +51,11 @@ enum ButtonTag: Int {
     case Ok = 100
     case Cancel = 200
 }
+struct CustomColors {
+    static var background: NSColor {
+        if NSApplication.shared.isDarkMode {
+            return NSColor(red: 34.0 / 255.0, green: 34.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
+        }
+        return .white    // for Light Mode
+    }
+}

@@ -34,7 +34,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     //追加ボタン
     @IBAction func addaction(_ sender: Any) {
         print("addaction called")
-        
+//        print("test active screen:\(NSApplication.shared.keyWindow)")
+        headerClear()
         func dialogOKCancel(question: String, text: String) -> Bool {
             let myPopup: NSAlert = NSAlert()
             myPopup.messageText = question
@@ -106,6 +107,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerClear()
         //test code
         testAdd()
         testCategoryAdd()
@@ -308,7 +310,59 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     func tableViewSelectionDidChange(_ notification: Notification){
         //        print("tableViewSelectionDidChange called!!")
     }
-    
+    func headerClear()  {
+        let catname = [Consts.RAWNAME_CATEGORY,Consts.RAWNAME_NAME,Consts.RAWNAME_ID,Consts.RAWNAME_PASSWORD,Consts.RAWNAME_MAIL,Consts.RAWNAME_MEMO]
+        for (i,col) in tableView.tableColumns.enumerated(){
+            col.headerCell.stringValue=catname[i]
+//            col.headerCell.textColor = .black
+        }
+        tableView.reloadData()
+    }
+    func tableView(_ tableView: NSTableView, mouseDownInHeaderOf tableColumn: NSTableColumn){
+        print("mouseDownInHeaderOf")
+        if accounts == nil{
+            print("accountsなし")
+            return
+        }
+        else if tableView.selectedRow == -1 && tableView.numberOfRows > 1 {
+            print("選択なし")
+            return
+        }
+        else if tableView.numberOfRows == 0{
+            print("行なし")
+            return
+        }
+        
+        headerClear()
+        
+        tableColumn.headerCell.stringValue="copied!!"
+//        tableColumn.headerCell.textColor = .blue
+//        tableColumn.headerCell.backgroundColor = .blue
+        
+        var ac = accounts![0]
+        if tableView.numberOfRows > 1 {
+            ac = accounts![tableView.selectedRow]
+        }
+        
+        if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_category") {
+            print("col_category")
+        }
+        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_name") {
+            copyBtnTouchDown(text: ac.name!)
+        }
+        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_id") {
+            copyBtnTouchDown(text: ac.id!)
+        }
+        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_password") {
+            copyBtnTouchDown(text: ac.password!)
+        }
+        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_mail") {
+            copyBtnTouchDown(text: ac.mail!)
+        }
+        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_memo") {
+            copyBtnTouchDown(text: ac.memo!)
+        }
+    }
     //テーブルに値設定
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
         //        let account: Account = accounts![indexPath.section][indexPath.row]
@@ -424,6 +478,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
 //        initializeSetting()
 //    }
     @IBAction func touchDown_tocategory(_ sender: Any) {
+        headerClear()
         performSegue(withIdentifier: "toCustom", sender: self)
 //        presentAsModalWindow(ViewController_categoryEditing())
 //        present(ViewController_categoryEditing(), animator: nil)
@@ -524,7 +579,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     }
     
     func controlTextDidChange(_ obj: Notification){
-        //        print("controlTextDidChange")
+//        headerClear()
+        print("controlTextDidChange called!!")
         if obj.object is NSTextField {
             var field:NSTextField = obj.object as! NSTextField
             print("controlTextDidChange searchBarText:\(searchBar.stringValue),obj:\(field.stringValue)")
@@ -539,10 +595,31 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         }
     }
     func changeCategory(category: _CategorySetting?) {
+        headerClear()
         ViewController.selectedCategory = category
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
     }
     
+    
+    //コピーボタン押下処理
+    func copyBtnTouchDown(text:String)  {
+//        setStateTextBox()
+        if text == "" {
+            return
+        }
+        self.copyToClipBoard(text: (text))
+    }
+    
+    func copyToClipBoard(text: String) {
+        NSPasteboard.general.clearContents()
+         NSPasteboard.general.setString(text, forType: .string)
+//        let board = NSPasteboard.general
+//        board.setString(text, forType: .string)
+//        let format = NSLocalizedString("confirm_sentence_copy_to_clipboard", comment: "")//クリップボードに「%@」をコピーしました
+//        let valueArray: [CVarArg] = [text]
+//        ViewController_popup.dispText = String(format: format, arguments: valueArray)//ポップアップビューコントローラーにテキストを設定
+//        performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
+    }
     //カテゴリー値変更イベントハンドラ
     @IBAction func valueChanged(_ sender: Any) {
         print("category value changed called! selected index:\(category.selectedSegment)")

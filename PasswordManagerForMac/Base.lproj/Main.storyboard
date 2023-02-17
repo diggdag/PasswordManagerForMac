@@ -845,20 +845,20 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4P-Jc-QQ4">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="164"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="k8q-rN-OAd">
-                                    <rect key="frame" x="1" y="1" width="478" height="162"/>
+                                    <rect key="frame" x="1" y="1" width="478" height="123"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="yhI-Jc-x2Q" id="cdG-dw-G0d">
-                                            <rect key="frame" x="0.0" y="0.0" width="621" height="134"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="487" height="95"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="col_category" width="121" minWidth="10" maxWidth="3.4028234663852886e+38" id="cTb-ZH-u9M" userLabel="col_category">
+                                                <tableColumn identifier="col_category" width="65" minWidth="10" maxWidth="3.4028234663852886e+38" id="cTb-ZH-u9M" userLabel="col_category">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -879,7 +879,7 @@
                                                     </popUpButtonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_name" width="106" minWidth="40" maxWidth="1000" id="HJI-vV-fg5" userLabel="col_name">
+                                                <tableColumn identifier="col_name" width="65" minWidth="40" maxWidth="1000" id="HJI-vV-fg5" userLabel="col_name">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -891,7 +891,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_id" width="64" minWidth="40" maxWidth="1000" id="QzT-Dw-O9y" userLabel="col_id">
+                                                <tableColumn identifier="col_id" width="65" minWidth="40" maxWidth="1000" id="QzT-Dw-O9y" userLabel="col_id">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -903,7 +903,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_password" width="73" minWidth="10" maxWidth="3.4028234663852886e+38" id="7xg-AT-wJJ" userLabel="col_password">
+                                                <tableColumn identifier="col_password" width="65" minWidth="10" maxWidth="3.4028234663852886e+38" id="7xg-AT-wJJ" userLabel="col_password">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -915,7 +915,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_mail" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="WGp-pz-wUg" userLabel="col_mail">
+                                                <tableColumn identifier="col_mail" width="65" minWidth="10" maxWidth="3.4028234663852886e+38" id="WGp-pz-wUg" userLabel="col_mail">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -927,7 +927,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_memo" width="96" minWidth="10" maxWidth="3.4028234663852886e+38" id="U7u-LS-Gj3" userLabel="col_memo">
+                                                <tableColumn identifier="col_memo" width="65" minWidth="10" maxWidth="3.4028234663852886e+38" id="U7u-LS-Gj3" userLabel="col_memo">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -948,7 +948,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Z1d-hF-AUD">
-                                    <rect key="frame" x="1" y="147" width="478" height="16"/>
+                                    <rect key="frame" x="1" y="108" width="478" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="YCq-qh-OxJ">
@@ -956,7 +956,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="yhI-Jc-x2Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="621" height="28"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="487" height="28"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -997,12 +997,53 @@
                         <outlet property="selectedCategoryText" destination="qSj-3x-C8T" id="Nxb-03-R5c"/>
                         <outlet property="tableView" destination="cdG-dw-G0d" id="Lty-zu-4Yf"/>
                         <segue destination="cbS-eC-QZj" kind="modal" identifier="toCustom" id="VMW-Vw-Tf6"/>
+                        <segue destination="6nm-vQ-bND" kind="modal" identifier="toPopUp" id="4Vp-lQ-kc7"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="bVM-tc-ixK"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="12" y="614"/>
+        </scene>
+        <!--View Controller popup-->
+        <scene sceneID="XO5-8w-jSJ">
+            <objects>
+                <viewController id="6nm-vQ-bND" customClass="ViewController_popup" customModule="PasswordManagerForMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="dAN-Bl-t5n">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yA4-Np-jzh">
+                                <rect key="frame" x="75" y="0.0" width="300" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="CqO-ax-Ljz"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="toast" id="iNx-NV-BR3"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nhh-3o-o7f">
+                                <rect key="frame" x="207" y="67" width="37" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="THw-4l-ghK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="nhh-3o-o7f" firstAttribute="centerY" secondItem="yA4-Np-jzh" secondAttribute="centerY" id="AyJ-gn-K1c"/>
+                            <constraint firstItem="yA4-Np-jzh" firstAttribute="centerX" secondItem="dAN-Bl-t5n" secondAttribute="centerX" id="Wku-f7-TUU"/>
+                            <constraint firstItem="nhh-3o-o7f" firstAttribute="centerX" secondItem="dAN-Bl-t5n" secondAttribute="centerX" id="t5j-YJ-9Q9"/>
+                            <constraint firstAttribute="bottom" secondItem="yA4-Np-jzh" secondAttribute="bottom" id="xvQ-1v-yAb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="popUpImage" destination="yA4-Np-jzh" id="lFy-Tq-gPT"/>
+                        <outlet property="text" destination="nhh-3o-o7f" id="6wj-KS-0wW"/>
+                    </connections>
+                </viewController>
+                <customObject id="dtW-GN-jN2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-181" y="1016"/>
         </scene>
         <!--View Controller category Editing-->
         <scene sceneID="cXN-lv-3k0">
@@ -1126,5 +1167,6 @@
     <resources>
         <image name="category_game" width="512" height="512"/>
         <image name="category_website" width="512" height="512"/>
+        <image name="toast" width="900" height="150"/>
     </resources>
 </document>
