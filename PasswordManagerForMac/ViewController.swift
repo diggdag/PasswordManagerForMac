@@ -31,6 +31,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBOutlet var selectedCategoryText: NSTextField!
     @IBOutlet var category: NSSegmentedControl!
     
+    @IBOutlet var passwordColumn: NSTableColumn!
+    @IBOutlet var tableCell_name: NSTextFieldCell!
     //追加ボタン
     @IBAction func addaction(_ sender: Any) {
         print("addaction called")
@@ -109,8 +111,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         super.viewDidLoad()
         headerClear()
         //test code
-        testAdd()
-        testCategoryAdd()
+//        testAdd()
+//        testCategoryAdd()
         //        search(searchText: nil, category: nil)
     }
     
@@ -333,9 +335,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             return
         }
         
-        headerClear()
-        
         tableColumn.headerCell.stringValue="copied!!"
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {(time:Timer) in self.headerClear()})
 //        tableColumn.headerCell.textColor = .blue
 //        tableColumn.headerCell.backgroundColor = .blue
         
@@ -397,7 +398,17 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             return accounts![row].id;
         }
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_password") {
-            return accounts![row].password;
+            return accounts![row].password
+//            if accounts![row].password == nil{
+//                return nil
+//            }
+//            else{
+//                var rtn:String = String(accounts![row].password!.first!);
+//                for _ in 0...accounts![row].password!.utf16.count{
+//                    rtn = rtn + "●";
+//                }
+//                return rtn;
+//            }
         }
         else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_mail") {
             return accounts![row].mail;
@@ -482,6 +493,9 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         performSegue(withIdentifier: "toCustom", sender: self)
 //        presentAsModalWindow(ViewController_categoryEditing())
 //        present(ViewController_categoryEditing(), animator: nil)
+    }
+    @IBAction func touchDown_generateBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "toGenerate", sender: nil)
     }
     //遷移する際の処理/
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -579,7 +593,6 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     }
     
     func controlTextDidChange(_ obj: Notification){
-//        headerClear()
         print("controlTextDidChange called!!")
         if obj.object is NSTextField {
             var field:NSTextField = obj.object as! NSTextField
@@ -592,10 +605,22 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             //            else if field.identifier == NSUserInterfaceItemIdentifier("search2") {
             //                print("search2")//test
             //            }
+            
+//            else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_password") {
+//                if accounts![row].password == nil{
+//                    return nil
+//                }
+//                else{
+//                    var rtn:String = String(accounts![row].password!.first!);
+//                    for _ in 0...accounts![row].password!.utf16.count{
+//                        rtn = rtn + "●";
+//                    }
+//                    return rtn;
+//                }
+//            }
         }
     }
     func changeCategory(category: _CategorySetting?) {
-        headerClear()
         ViewController.selectedCategory = category
         search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
     }
@@ -682,8 +707,14 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     //            accounts![idx!].append(account)
     //        }
     //    }
+    func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+        print("textShouldBeginEditing called!!")
+//        passwordColumn.width = 60
+        return true
+    }
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         print("textShouldEndEditing called!!")
+//        passwordColumn.width = 30
         //        if obj.object is NSTextField {
         //            var field:NSTableView = obj.object as! NSTableView
         //            if field.identifier == NSUserInterfaceItemIdentifier("search1") {
