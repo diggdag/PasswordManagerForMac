@@ -76,6 +76,7 @@ class ViewController_generate:NSViewController,NSTableViewDelegate,NSTableViewDa
         
         if regenerate() {
             tableView.reloadData()
+            tableView.deselectAll(nil)
         }
     }
     //テーブルに値設定
@@ -92,11 +93,13 @@ class ViewController_generate:NSViewController,NSTableViewDelegate,NSTableViewDa
     }
     func tableViewSelectionDidChange(_ notification: Notification){
         print("tableViewSelectionDidChange called!!")
-        copyBtnTouchDown(text: passwords[tableView.selectedRow])
-        passwordCol.headerCell.stringValue="copied!!"
-        tableView.reloadData()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {(time:Timer) in self.headerClear()})
-        //        print("tableViewSelectionDidChange called!!")
+        if(tableView.selectedRow != -1){
+            copyBtnTouchDown(text: passwords[tableView.selectedRow])
+            passwordCol.headerCell.stringValue="copied!!"
+            tableView.reloadData()
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {(time:Timer) in self.headerClear()})
+            //        print("tableViewSelectionDidChange called!!")
+        }
     }
     func headerClear()  {
         passwordCol.headerCell.stringValue=""
