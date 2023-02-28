@@ -968,7 +968,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="addaction:" target="XfG-lQ-9wD" id="J9J-0C-Ls5"/>
+                                    <action selector="touchDown_add:" target="XfG-lQ-9wD" id="531-Ld-kqM"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMd-TA-RZh">
@@ -991,6 +991,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="touchDown_generateBtn:" target="XfG-lQ-9wD" id="91M-NP-hHN"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-8m-aCW">
+                                <rect key="frame" x="344" y="228" width="116" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Make Backup" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QrV-TI-HWL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_backup:" target="XfG-lQ-9wD" id="wuJ-Pc-8P8"/>
                                 </connections>
                             </button>
                         </subviews>

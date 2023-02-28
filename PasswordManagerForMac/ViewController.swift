@@ -34,7 +34,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBOutlet var passwordColumn: NSTableColumn!
     @IBOutlet var tableCell_name: NSTextFieldCell!
     //追加ボタン
-    @IBAction func addaction(_ sender: Any) {
+    @IBAction func touchDown_add(_ sender: Any) {
         print("addaction called")
 //        print("test active screen:\(NSApplication.shared.keyWindow)")
         headerClear()
@@ -56,40 +56,43 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 
                 //名前は必須
                 if(name == "") {
-                    showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                    showAlert(myTitle: NSLocalizedString("error_sentence3", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//名前を入力してください
                     return false
                 }
                 
                 //名前がすでに使用されているかどうかをチェックする
                 let account: Account? = Utilities.getAccount(name: name)
                 if account != nil {
-                    showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence2", comment: ""))//その名前はすでに使用されています
+                    showAlert(myTitle: NSLocalizedString("error_sentence2", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//その名前はすでに使用されています
                     return false
                 }
-                
-                let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
-                let viewContext = appDelegate.persistentContainer.viewContext
-                
-                //空行チェック↓
-//                let query: NSFetchRequest<Account> = Account.fetchRequest()
-//
-//                let predicate = NSPredicate(format: "%K = %@", "name", "")
-//                query.predicate = predicate
-//                do {
-//                    let fetchResults = try viewContext.fetch(query)
-//
-//                    if(fetchResults.count != 0){
-//                        print("もう空行ある")
-//                        return
-//                    }
-//                } catch {
-//                }
-                //add
-                let newaccount = NSEntityDescription.entity(forEntityName: "Account", in: viewContext)
-                let newRecord = NSManagedObject(entity: newaccount!, insertInto: viewContext)
-                newRecord.setValue(name, forKey: "name")
-                appDelegate.saveAction(nil)//TODO 要らない疑惑
-                
+                do{
+                    let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+                    let viewContext = appDelegate.persistentContainer.viewContext
+                    
+                    //空行チェック↓
+                    //                let query: NSFetchRequest<Account> = Account.fetchRequest()
+                    //
+                    //                let predicate = NSPredicate(format: "%K = %@", "name", "")
+                    //                query.predicate = predicate
+                    //                do {
+                    //                    let fetchResults = try viewContext.fetch(query)
+                    //
+                    //                    if(fetchResults.count != 0){
+                    //                        print("もう空行ある")
+                    //                        return
+                    //                    }
+                    //                } catch {
+                    //                }
+                    //add
+                    let newaccount = NSEntityDescription.entity(forEntityName: "Account", in: viewContext)
+                    let newRecord = NSManagedObject(entity: newaccount!, insertInto: viewContext)
+                    newRecord.setValue(name, forKey: "name")
+                    appDelegate.saveAction(nil)//TODO 要らない疑惑
+                    try viewContext.save()//TODO こっちが必要なものでは？
+                }catch{
+                    
+                }
                 //検索条件を消してサーチし直し
                 ViewController.searchText = name
                 searchBar.stringValue = name
@@ -483,14 +486,14 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             
             //名前は必須
             if(name == "") {
-                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                showAlert(myTitle:NSLocalizedString("error_sentence3", comment: "") , mySentence: NSLocalizedString("error_title", comment: ""))//名前を入力してください
                 return
             }
             
             //名前がすでに使用されているかどうかをチェックする
             let account: Account? = Utilities.getAccount(name: name!)
             if account != nil {
-                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence2", comment: ""))//その名前はすでに使用されています
+                showAlert(myTitle: NSLocalizedString("error_sentence2", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//その名前はすでに使用されています
                 return
             }
         }
@@ -539,6 +542,37 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         performSegue(withIdentifier: "toCustom", sender: self)
 //        presentAsModalWindow(ViewController_categoryEditing())
 //        present(ViewController_categoryEditing(), animator: nil)
+    }
+    @IBAction func touchDown_backup(_ sender: Any) {
+        NSPasteboard.general.clearContents()
+//        let board = UIPasteboard.general
+        let text = Utilities.makeBackUpText()
+        
+        //クリップボード
+
+        NSPasteboard.general.setString(text, forType: .string)
+//        board.string = text
+        
+        //リストアテキストボックス
+//        importText.text = text
+        do{
+            //データベース
+            let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Backup", in: viewContext)
+            let newRecord = NSManagedObject(entity: entity!, insertInto: viewContext)
+            newRecord.setValue(Date(), forKey: "createDate")
+            newRecord.setValue(text, forKey: "text")
+            //        appDelegate.saveContext()
+            appDelegate.saveAction(nil)//TODO 要らない疑惑
+            try viewContext.save()//TODO こっちが必要なものでは？
+        }
+        catch{
+        }
+//        ViewController_popup.dispText = NSLocalizedString("info_sentence2", comment: "")//ポップアップビューコントローラーにテキストを設定
+//        self.performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
+        
+            showAlert(myTitle:NSLocalizedString("info_sentence2", comment: "") , mySentence: NSLocalizedString("info_title", comment: ""))//バックアップテキストをクリップボードに貼り付けました。\nメモアプリなどに貼り付けて保管してください
     }
     @IBAction func touchDown_generateBtn(_ sender: Any) {
         self.performSegue(withIdentifier: "toGenerate", sender: nil)
