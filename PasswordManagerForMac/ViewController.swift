@@ -31,6 +31,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBOutlet var selectedCategoryText: NSTextField!
     @IBOutlet var category: NSSegmentedControl!
     
+    @IBOutlet var deleteBtn: NSButton!
     @IBOutlet var passwordColumn: NSTableColumn!
     @IBOutlet var tableCell_name: NSTextFieldCell!
     //追加ボタン
@@ -314,6 +315,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     }
     func tableViewSelectionDidChange(_ notification: Notification){
         print("tableViewSelectionDidChange called!!")
+        deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
         if accounts == nil{
             print("accountsなし")
             return
@@ -543,6 +545,51 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
 //        presentAsModalWindow(ViewController_categoryEditing())
 //        present(ViewController_categoryEditing(), animator: nil)
     }
+    @IBAction func touchDown_delete(_ sender: Any) {
+        if(tableView.selectedRow == -1){
+            return;
+        }
+        
+        let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let request: NSFetchRequest<Account> = Account.fetchRequest()
+        let account: Account = self.accounts![tableView.selectedRow]
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = question
+            myPopup.informativeText = text
+            myPopup.alertStyle = NSAlert.Style.warning
+            myPopup.addButton(withTitle: "OK")
+            myPopup.addButton(withTitle: "Cancel")
+            let res = myPopup.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                
+                let predicate = NSPredicate(format: "name = %@", account.name!)
+
+                request.predicate = predicate
+                do {
+                    let fetchResults = try viewContext.fetch(request)
+                    for result: AnyObject in fetchResults {
+                        let record = result as! NSManagedObject
+                        viewContext.delete(record)
+                    }
+                    try viewContext.save()
+                    headerClear()
+                    initializeSetting()
+                } catch {
+                }
+                return true
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_title", comment: ""), text: String(format: NSLocalizedString("confirm_sentence_delete", comment: ""), arguments: [account.name!]))
+//        settings.remove(at: tableView.selectedRow)
+//        tableView.reloadData()
+    }
     @IBAction func touchDown_backup(_ sender: Any) {
         NSPasteboard.general.clearContents()
 //        let board = UIPasteboard.general
@@ -573,6 +620,84 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
 //        self.performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
         
             showAlert(myTitle:NSLocalizedString("info_sentence2", comment: "") , mySentence: NSLocalizedString("info_title", comment: ""))//バックアップテキストをクリップボードに貼り付けました。\nメモアプリなどに貼り付けて保管してください
+    }
+    @IBAction func touchDown_import(_ sender: Any) {
+        
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = NSLocalizedString("info_title", comment: "")
+            myPopup.informativeText = NSLocalizedString("restoreFromTextInitText2", comment: "")
+            myPopup.alertStyle = NSAlert.Style.warning
+            let textField = NSTextField(frame: NSRect(x:0,y: 0,width:  200,height:  48))
+            
+
+            myPopup.accessoryView = textField
+            
+            myPopup.addButton(withTitle: "OK")
+            myPopup.addButton(withTitle: "Cancel")
+            let res = myPopup.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                let name = (myPopup.accessoryView as! NSTextField).stringValue
+                
+                
+                let myPopup2: NSAlert = NSAlert()
+                myPopup2.messageText = question
+                myPopup2.informativeText = text
+                myPopup2.alertStyle = NSAlert.Style.warning
+                //            let textField = NSTextField(frame: NSRect(x:0,y: 0,width:  200,height:  48))
+                //
+                //
+                //            myPopup.accessoryView = textField
+                
+                myPopup2.addButton(withTitle: "OK")
+                myPopup2.addButton(withTitle: "Cancel")
+                let res = myPopup2.runModal()
+                if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                    let name = (myPopup.accessoryView as! NSTextField).stringValue
+                    print("FirstButton name:\(name)")
+                    
+                    do{
+                        //現状を保存
+                        let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+                        let viewContext = appDelegate.persistentContainer.viewContext
+                        let entity = NSEntityDescription.entity(forEntityName: "Backup", in: viewContext)
+                        let newRecord = NSManagedObject(entity: entity!, insertInto: viewContext)
+                        newRecord.setValue(Date(), forKey: "createDate")
+                        newRecord.setValue("\(Utilities.makeBackUpText())", forKey: "text")
+                        //                appDelegate.saveContext()
+                        
+                        appDelegate.saveAction(nil)//TODO 要らない疑惑
+                        try viewContext.save()//TODO こっちが必要なものでは？
+                    }
+                    catch{
+                        
+                    }
+                    //バックアップ処理
+                    let cnt = Utilities.importBackUpText(text: name)
+                    
+                    let format = NSLocalizedString("info_sentence3", comment: "")//バックアップのリストアが完了しました(%@件)
+                    let valueArray: [CVarArg] = [String(cnt)]
+                    self.showAlert(myTitle: NSLocalizedString("info_title", comment: ""), mySentence: String(format: format, arguments: valueArray))
+                    
+                    //                tableView.reloadData()
+                    headerClear()
+                    initializeSetting()
+                    
+                    return true
+                }
+                else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                    print("SecondButton")
+                    return true
+                }
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        //confirm_title2
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_title2", comment: ""), text: NSLocalizedString("confirm_sentence_import2", comment: ""))
     }
     @IBAction func touchDown_generateBtn(_ sender: Any) {
         self.performSegue(withIdentifier: "toGenerate", sender: nil)
@@ -730,7 +855,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     //カテゴリー値変更イベントハンドラ
     @IBAction func valueChanged(_ sender: Any) {
         print("category value changed called! selected index:\(category.selectedSegment)")
-        
+        deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
 //        let segment: UISegmentedControl = sender as! UISegmentedControl
         //ALL
         if category.selectedSegment == 0{

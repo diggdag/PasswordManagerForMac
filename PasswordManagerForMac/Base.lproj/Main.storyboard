@@ -804,18 +804,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <searchField identifier="search1" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-kO-8c9">
-                                <rect key="frame" x="92" y="172" width="96" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="iPw-CV-lcx">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="IPl-iZ-EuA"/>
-                                </connections>
-                            </searchField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dwr-mh-VLh">
                                 <rect key="frame" x="159" y="208" width="162" height="24"/>
                                 <constraints>
@@ -994,7 +982,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-8m-aCW">
-                                <rect key="frame" x="344" y="228" width="116" height="32"/>
+                                <rect key="frame" x="5" y="163" width="116" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Make Backup" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QrV-TI-HWL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1002,6 +990,40 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="touchDown_backup:" target="XfG-lQ-9wD" id="wuJ-Pc-8P8"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kkP-yM-12c">
+                                <rect key="frame" x="5" y="131" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rMI-7F-aJP">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_import:" target="XfG-lQ-9wD" id="Qg1-qI-Pz5"/>
+                                </connections>
+                            </button>
+                            <searchField identifier="search1" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-kO-8c9">
+                                <rect key="frame" x="116" y="133" width="96" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="iPw-CV-lcx">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="IPl-iZ-EuA"/>
+                                </connections>
+                            </searchField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZs-Nr-db4">
+                                <rect key="frame" x="2" y="202" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="delete row" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3d9-4B-W1B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_delete:" target="XfG-lQ-9wD" id="rLD-Qh-LTV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1013,6 +1035,7 @@
                     <connections>
                         <outlet property="category" destination="Dwr-mh-VLh" id="VLX-vX-9gn"/>
                         <outlet property="categoryWidthConstraint" destination="ux4-zy-JCz" id="myY-Qi-i7o"/>
+                        <outlet property="deleteBtn" destination="vZs-Nr-db4" id="FtY-Qu-SJF"/>
                         <outlet property="mymenu" destination="iK8-sn-lzz" id="xYo-Iz-2iA"/>
                         <outlet property="passwordColumn" destination="7xg-AT-wJJ" id="nOd-Z0-smD"/>
                         <outlet property="searchBar" destination="f7i-kO-8c9" id="12n-RG-1Y7"/>
