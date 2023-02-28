@@ -310,7 +310,38 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         print("didAdd called!!")
     }
     func tableViewSelectionDidChange(_ notification: Notification){
-        //        print("tableViewSelectionDidChange called!!")
+        print("tableViewSelectionDidChange called!!")
+        if accounts == nil{
+            print("accountsなし")
+            return
+        }
+        else if tableView.selectedRow == -1 {// && tableView.numberOfRows > 1
+            print("選択なし")
+            return
+        }
+        else if tableView.numberOfRows == 0{
+            print("行なし")
+            return
+        }
+        
+        var ac = accounts![0]
+        if tableView.numberOfRows > 1 {
+            ac = accounts![tableView.selectedRow]
+        }
+        if(ac.password == nil){
+            print("パスワードなし")
+            return;
+        }
+        else{
+            if(
+                copyBtnTouchDown(text: ac.password!)
+            ){
+                passwordColumn.headerCell.stringValue="copied!!"
+                tableView.reloadData()
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
+            }
+        }
+            //        print("tableViewSelectionDidChange called!!")
     }
     func headerClear()  {
         let catname = [Consts.RAWNAME_CATEGORY,Consts.RAWNAME_NAME,Consts.RAWNAME_ID,Consts.RAWNAME_PASSWORD,Consts.RAWNAME_MAIL,Consts.RAWNAME_MEMO]
@@ -335,34 +366,49 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             return
         }
         
-        tableColumn.headerCell.stringValue="copied!!"
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {(time:Timer) in self.headerClear()})
-//        tableColumn.headerCell.textColor = .blue
-//        tableColumn.headerCell.backgroundColor = .blue
-        
         var ac = accounts![0]
         if tableView.numberOfRows > 1 {
             ac = accounts![tableView.selectedRow]
         }
-        
+        var copySuccess = false
         if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_category") {
             print("col_category")
+            return
         }
         else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_name") {
-            copyBtnTouchDown(text: ac.name!)
+            copySuccess = copyBtnTouchDown(text: ac.name!)
         }
         else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_id") {
-            copyBtnTouchDown(text: ac.id!)
+            if(ac.id == nil){return;}
+            else{
+                copySuccess = copyBtnTouchDown(text: ac.id!)
+            }
         }
         else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_password") {
-            copyBtnTouchDown(text: ac.password!)
+            if(ac.password == nil){return;}
+            else{
+                copySuccess = copyBtnTouchDown(text: ac.password!)
+            }
         }
         else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_mail") {
-            copyBtnTouchDown(text: ac.mail!)
+            if(ac.mail == nil){return;}
+            else{
+                copySuccess = copyBtnTouchDown(text: ac.mail!)
+            }
         }
         else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_memo") {
-            copyBtnTouchDown(text: ac.memo!)
+            if(ac.memo == nil){return;}
+            else{
+                copySuccess = copyBtnTouchDown(text: ac.memo!)
+            }
         }
+        if(copySuccess)
+        {
+            tableColumn.headerCell.stringValue="copied!!"
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
+        }
+//        tableColumn.headerCell.textColor = .blue
+//        tableColumn.headerCell.backgroundColor = .blue
     }
     //テーブルに値設定
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
@@ -627,12 +673,14 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     
     
     //コピーボタン押下処理
-    func copyBtnTouchDown(text:String)  {
+    func copyBtnTouchDown(text:String) -> Bool  {
 //        setStateTextBox()
         if text == "" {
-            return
+            print("テキストが空文字のため終了")
+            return false
         }
         self.copyToClipBoard(text: (text))
+        return true
     }
     
     func copyToClipBoard(text: String) {
