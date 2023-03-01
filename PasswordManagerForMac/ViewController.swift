@@ -702,6 +702,8 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBAction func touchDown_generateBtn(_ sender: Any) {
         self.performSegue(withIdentifier: "toGenerate", sender: nil)
     }
+    @IBAction func touchDown_backuplist(_ sender: Any) {self.performSegue(withIdentifier: "toBackupList", sender: nil)
+    }
     //遷移する際の処理/
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCustom" {

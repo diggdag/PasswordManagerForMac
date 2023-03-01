@@ -83,5 +83,5 @@
 
 "restoreFromTextInitText" = "ここにバックアップテキストを貼り付けて読み込みボタンを押してください（このテキストは消してください）";
 "restoreFromTextInitText2" = "バックアップテキストを貼り付けてください";
-"restoreListCellText" = "%@のバックアップ";
+"restoreListCellText" = "%@";
 "confirm_add" = "名前を入力してください";

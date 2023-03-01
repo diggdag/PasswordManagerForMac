@@ -16,6 +16,7 @@
 		CF85CFF4299C7F10002E661A /* ViewController_popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFF3299C7F10002E661A /* ViewController_popup.swift */; };
 		CF85CFF6299C8C66002E661A /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFF5299C8C66002E661A /* Extentions.swift */; };
 		CF85CFF829A1F296002E661A /* ViewController_generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFF729A1F296002E661A /* ViewController_generate.swift */; };
+		CF85CFFC29AE4C4D002E661A /* ViewController_restore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85CFFB29AE4C4D002E661A /* ViewController_restore.swift */; };
 		CFFA39E5298AB42E00290195 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E4298AB42E00290195 /* AppDelegate.swift */; };
 		CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E6298AB42E00290195 /* ViewController.swift */; };
 		CFFA39EA298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 		CF85CFF3299C7F10002E661A /* ViewController_popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_popup.swift; sourceTree = "<group>"; };
 		CF85CFF5299C8C66002E661A /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		CF85CFF729A1F296002E661A /* ViewController_generate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_generate.swift; sourceTree = "<group>"; };
+		CF85CFFB29AE4C4D002E661A /* ViewController_restore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_restore.swift; sourceTree = "<group>"; };
 		CFFA39E1298AB42E00290195 /* PasswordManagerForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordManagerForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFA39E4298AB42E00290195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFA39E6298AB42E00290195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				CF85CFF3299C7F10002E661A /* ViewController_popup.swift */,
 				CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */,
 				CF85CFF729A1F296002E661A /* ViewController_generate.swift */,
+				CF85CFFB29AE4C4D002E661A /* ViewController_restore.swift */,
 				CFFA39ED298AB43000290195 /* Main.storyboard */,
 				CFFA39F0298AB43000290195 /* PasswordManagerForMac.entitlements */,
 				CFFA39E8298AB42E00290195 /* PasswordManagerForMac.xcdatamodeld */,
@@ -206,6 +209,7 @@
 				CFFA3A24298BA10B00290195 /* CategorySetting+CoreDataClass.swift in Sources */,
 				CF3B20CB29908A780071F111 /* Enums.swift in Sources */,
 				CFFA39E7298AB42E00290195 /* ViewController.swift in Sources */,
+				CF85CFFC29AE4C4D002E661A /* ViewController_restore.swift in Sources */,
 				CFFA3A1E298BA10B00290195 /* User+CoreDataClass.swift in Sources */,
 				CFFA3A1F298BA10B00290195 /* User+CoreDataProperties.swift in Sources */,
 				CF3B20CC29908A780071F111 /* Consts.swift in Sources */,

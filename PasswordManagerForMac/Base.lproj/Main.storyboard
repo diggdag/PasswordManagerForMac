@@ -1026,6 +1026,17 @@
                                     <action selector="touchDown_delete:" target="XfG-lQ-9wD" id="rLD-Qh-LTV"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUG-3X-9bI">
+                                <rect key="frame" x="132" y="162" width="100" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="backup list" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fYg-wA-oc4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_backuplist:" target="XfG-lQ-9wD" id="zwp-gr-0CL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Dwr-mh-VLh" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="39" id="228-fE-OTY"/>
@@ -1046,6 +1057,7 @@
                         <segue destination="cbS-eC-QZj" kind="modal" identifier="toCustom" id="VMW-Vw-Tf6"/>
                         <segue destination="6nm-vQ-bND" kind="modal" identifier="toPopUp" id="4Vp-lQ-kc7"/>
                         <segue destination="TBZ-Vb-PTi" kind="show" identifier="toGenerate" id="LzN-DB-MIa"/>
+                        <segue destination="DaY-L7-SjN" kind="show" identifier="toBackupList" id="V1z-Jf-wkt"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1346,6 +1358,100 @@
                 <customObject id="MzV-jK-cUE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="603" y="670"/>
+        </scene>
+        <!--View Controller restore-->
+        <scene sceneID="kW7-X2-z0S">
+            <objects>
+                <viewController id="DaY-L7-SjN" customClass="ViewController_restore" customModule="PasswordManagerForMac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="obO-UQ-Dt3">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-tg-SvH">
+                                <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" id="Izs-Fp-RDI">
+                                    <rect key="frame" x="1" y="1" width="210" height="298"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" headerView="fFi-SW-gAS" id="RFE-k6-lQc">
+                                            <rect key="frame" x="0.0" y="0.0" width="210" height="270"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <size key="intercellSpacing" width="17" height="0.0"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="col_backup" width="198" minWidth="40" maxWidth="1000" id="QSe-oQ-xea">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="backup date">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Text" id="DgW-W1-F4s">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="DaY-L7-SjN" id="Vxz-z5-gIv"/>
+                                                <outlet property="delegate" destination="DaY-L7-SjN" id="LOl-ci-jWk"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Ig8-D4-RiV">
+                                    <rect key="frame" x="1" y="283" width="210" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="qfM-If-0um">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="fFi-SW-gAS">
+                                    <rect key="frame" x="0.0" y="0.0" width="210" height="28"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-y7-8aj">
+                                <rect key="frame" x="210" y="0.0" width="240" height="300"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" drawsBackground="NO" id="IK4-zL-i47">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="gAD-aI-Zk6">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="240" height="300"/>
+                                            <size key="maxSize" width="240" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gV7-BL-bVv">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="t5z-ST-JZo">
+                                    <rect key="frame" x="224" y="0.0" width="16" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="backup_col" destination="QSe-oQ-xea" id="UA5-Pq-dDA"/>
+                        <outlet property="tableView" destination="RFE-k6-lQc" id="fYO-ig-9L8"/>
+                        <outlet property="textView" destination="gAD-aI-Zk6" id="hGB-bh-BSg"/>
+                    </connections>
+                </viewController>
+                <customObject id="cc8-hB-FPH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="598" y="1069"/>
         </scene>
     </scenes>
     <resources>

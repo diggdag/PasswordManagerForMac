@@ -97,7 +97,7 @@ class ViewController_generate:NSViewController,NSTableViewDelegate,NSTableViewDa
             copyBtnTouchDown(text: passwords[tableView.selectedRow])
             passwordCol.headerCell.stringValue="copied!!"
             tableView.reloadData()
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {(time:Timer) in self.headerClear()})
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
             //        print("tableViewSelectionDidChange called!!")
         }
     }
