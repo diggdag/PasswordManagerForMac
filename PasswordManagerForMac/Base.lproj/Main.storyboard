@@ -824,7 +824,7 @@
                                 </connections>
                             </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSj-3x-C8T">
-                                <rect key="frame" x="122" y="239" width="185" height="16"/>
+                                <rect key="frame" x="181" y="239" width="185" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="表示中：ウェブサイト（ダミー）" id="IC0-eR-n17">
                                     <font key="font" metaFont="system"/>
@@ -970,19 +970,8 @@
                                     <action selector="touchDown_tocategory:" target="XfG-lQ-9wD" id="5Pj-RF-9OY"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-y2-fah">
-                                <rect key="frame" x="323" y="132" width="157" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Password Generator" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S8w-qB-WQy">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="touchDown_generateBtn:" target="XfG-lQ-9wD" id="91M-NP-hHN"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-8m-aCW">
-                                <rect key="frame" x="5" y="163" width="116" height="32"/>
+                                <rect key="frame" x="5" y="163" width="147" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Make Backup" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QrV-TI-HWL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -993,7 +982,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kkP-yM-12c">
-                                <rect key="frame" x="5" y="131" width="81" height="32"/>
+                                <rect key="frame" x="5" y="131" width="167" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rMI-7F-aJP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1004,7 +993,7 @@
                                 </connections>
                             </button>
                             <searchField identifier="search1" wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7i-kO-8c9">
-                                <rect key="frame" x="116" y="133" width="96" height="22"/>
+                                <rect key="frame" x="183" y="137" width="96" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="iPw-CV-lcx">
                                     <font key="font" metaFont="system"/>
@@ -1016,7 +1005,7 @@
                                 </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZs-Nr-db4">
-                                <rect key="frame" x="2" y="202" width="98" height="32"/>
+                                <rect key="frame" x="325" y="131" width="98" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="delete row" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3d9-4B-W1B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1027,7 +1016,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUG-3X-9bI">
-                                <rect key="frame" x="132" y="162" width="100" height="32"/>
+                                <rect key="frame" x="5" y="195" width="147" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="backup list" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fYg-wA-oc4">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1035,6 +1024,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="touchDown_backuplist:" target="XfG-lQ-9wD" id="zwp-gr-0CL"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-y2-fah">
+                                <rect key="frame" x="5" y="228" width="157" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Password Generator" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S8w-qB-WQy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="touchDown_generateBtn:" target="XfG-lQ-9wD" id="91M-NP-hHN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1074,39 +1074,39 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pne-5Z-PmD">
-                                <rect key="frame" x="46" y="263" width="87" height="18"/>
+                                <rect key="frame" x="46" y="263" width="120" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="数字を含む" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="eMB-Oh-5Tn">
+                                <buttonCell key="cell" type="check" title="include number" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="eMB-Oh-5Tn">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nh7-ha-vBk">
-                                <rect key="frame" x="46" y="241" width="183" height="18"/>
+                                <rect key="frame" x="46" y="241" width="194" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="アルファベット大文字を含む" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4B1-DH-jDo">
+                                <buttonCell key="cell" type="check" title="include uppercase alphabet" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4B1-DH-jDo">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oky-6I-ewV">
-                                <rect key="frame" x="46" y="219" width="183" height="18"/>
+                                <rect key="frame" x="46" y="219" width="191" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="アルファベット小文字を含む" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k8t-Zy-huP">
+                                <buttonCell key="cell" type="check" title="include lowercase alphabet" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k8t-Zy-huP">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tly-gQ-j4y">
-                                <rect key="frame" x="46" y="197" width="87" height="18"/>
+                                <rect key="frame" x="46" y="197" width="117" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="記号を含む" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="meX-eH-fL4">
+                                <buttonCell key="cell" type="check" title="include symbol" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="meX-eH-fL4">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-sA-2L2">
-                                <rect key="frame" x="43" y="86" width="94" height="32"/>
+                                <rect key="frame" x="43" y="86" width="151" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Generate!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oaB-wB-pgn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1117,9 +1117,9 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-cU-ydN">
-                                <rect key="frame" x="68" y="163" width="41" height="16"/>
+                                <rect key="frame" x="68" y="163" width="43" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="文字数" id="6h8-KE-cph">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="length" id="6h8-KE-cph">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

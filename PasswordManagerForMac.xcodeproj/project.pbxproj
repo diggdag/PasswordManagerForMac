@@ -41,11 +41,11 @@
 		CF3DA4ED2995085800F9C465 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF3DA4EF2995085C00F9C465 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF3DA4F029969D6800F9C465 /* ViewController_categoryEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_categoryEditing.swift; sourceTree = "<group>"; };
-		CF85CFF2299B721E002E661A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		CF85CFF3299C7F10002E661A /* ViewController_popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_popup.swift; sourceTree = "<group>"; };
 		CF85CFF5299C8C66002E661A /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		CF85CFF729A1F296002E661A /* ViewController_generate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_generate.swift; sourceTree = "<group>"; };
 		CF85CFFB29AE4C4D002E661A /* ViewController_restore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_restore.swift; sourceTree = "<group>"; };
+		CF85CFFE29AF1027002E661A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		CFFA39E1298AB42E00290195 /* PasswordManagerForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordManagerForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFFA39E4298AB42E00290195 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFFA39E6298AB42E00290195 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CFFA39EE298AB43000290195 /* Base */,
-				CF85CFF2299B721E002E661A /* ja */,
+				CF85CFFE29AF1027002E661A /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

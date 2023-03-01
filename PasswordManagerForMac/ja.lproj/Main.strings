@@ -29,11 +29,20 @@
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK"; */
 "3Om-Ey-2VK.title" = "Use Default";
 
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "3ZU-aa-w2e"; */
+"3ZU-aa-w2e.title" = "Text";
+
+/* Class = "NSButtonCell"; title = "delete row"; ObjectID = "3d9-4B-W1B"; */
+"3d9-4B-W1B.title" = "行削除";
+
 /* Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH"; */
 "3rS-ZA-NoH.title" = "Speech";
 
 /* Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj"; */
 "46P-cB-AYj.title" = "Tighten";
+
+/* Class = "NSButtonCell"; title = "include uppercase alphabet"; ObjectID = "4B1-DH-jDo"; */
+"4B1-DH-jDo.title" = "アルファベット大文字を含む";
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u"; */
 "4EN-yA-p0u.title" = "Find";
@@ -58,6 +67,9 @@
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Redo";
+
+/* Class = "NSTextFieldCell"; title = "文字数"; ObjectID = "6h8-KE-cph"; */
+"6h8-KE-cph.title" = "文字数";
 
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
 "78Y-hA-62v.title" = "Correct Spelling Automatically";
@@ -91,6 +103,9 @@
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
 "DVo-aG-piG.title" = "Close";
+
+/* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "DgW-W1-F4s"; */
+"DgW-W1-F4s.title" = "Text";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7"; */
 "Dv1-io-Yv7.title" = "Spelling and Grammar";
@@ -170,6 +185,18 @@
 /* Class = "NSMenuItem"; title = "Item"; ObjectID = "LtC-so-inj"; */
 "LtC-so-inj.title" = "Item";
 
+/* Class = "NSSegmentedCell"; MWG-dV-IYB.ibShadowedLabels[0] = "4"; ObjectID = "MWG-dV-IYB"; */
+"MWG-dV-IYB.ibShadowedLabels[0]" = "4";
+
+/* Class = "NSSegmentedCell"; MWG-dV-IYB.ibShadowedLabels[1] = "8"; ObjectID = "MWG-dV-IYB"; */
+"MWG-dV-IYB.ibShadowedLabels[1]" = "8";
+
+/* Class = "NSSegmentedCell"; MWG-dV-IYB.ibShadowedLabels[2] = "16"; ObjectID = "MWG-dV-IYB"; */
+"MWG-dV-IYB.ibShadowedLabels[2]" = "16";
+
+/* Class = "NSSegmentedCell"; MWG-dV-IYB.ibShadowedLabels[3] = "32"; ObjectID = "MWG-dV-IYB"; */
+"MWG-dV-IYB.ibShadowedLabels[3]" = "32";
+
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Copy Ruler";
 
@@ -203,6 +230,12 @@
 /* Class = "NSButtonCell"; title = "追加"; ObjectID = "QLq-V4-f7a"; */
 "QLq-V4-f7a.title" = "追加";
 
+/* Class = "NSTableColumn"; headerCell.title = "backup date"; ObjectID = "QSe-oQ-xea"; */
+"QSe-oQ-xea.headerCell.title" = "backup date";
+
+/* Class = "NSButtonCell"; title = "Make Backup"; ObjectID = "QrV-TI-HWL"; */
+"QrV-TI-HWL.title" = "バックアップを作成";
+
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
 "R4o-n2-Eq4.title" = "Zoom";
 
@@ -217,6 +250,12 @@
 
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
 "S0p-oC-mLd.title" = "Jump to Selection";
+
+/* Class = "NSButtonCell"; title = "Password Generator"; ObjectID = "S8w-qB-WQy"; */
+"S8w-qB-WQy.title" = "パスワード生成";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "THw-4l-ghK"; */
+"THw-4l-ghK.title" = "Label";
 
 /* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "TN0-mQ-Jz8"; */
 "TN0-mQ-Jz8.title" = "Item 3";
@@ -329,6 +368,12 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Undo";
 
+/* Class = "NSButtonCell"; title = "include number"; ObjectID = "eMB-Oh-5Tn"; */
+"eMB-Oh-5Tn.title" = "数字を含む";
+
+/* Class = "NSButtonCell"; title = "backup list"; ObjectID = "fYg-wA-oc4"; */
+"fYg-wA-oc4.title" = "バックアップ一覧";
+
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Paste";
 
@@ -356,6 +401,9 @@
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS"; */
 "jxT-CU-nIS.title" = "Format";
 
+/* Class = "NSButtonCell"; title = "include lowercase alphabet"; ObjectID = "k8t-Zy-huP"; */
+"k8t-Zy-huP.title" = "アルファベット小文字を含む";
+
 /* Class = "NSMenuItem"; title = "Show Sidebar"; ObjectID = "kIP-vf-haE"; */
 "kIP-vf-haE.title" = "Show Sidebar";
 
@@ -365,8 +413,14 @@
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
 "mK6-2p-4JG.title" = "Check Grammar With Spelling";
 
+/* Class = "NSButtonCell"; title = "include symbol"; ObjectID = "meX-eH-fL4"; */
+"meX-eH-fL4.title" = "記号を含む";
+
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq"; */
 "o6e-r0-MWq.title" = "Ligatures";
+
+/* Class = "NSButtonCell"; title = "Generate!"; ObjectID = "oaB-wB-pgn"; */
+"oaB-wB-pgn.title" = "パスワード生成";
 
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "Open Recent";
@@ -388,6 +442,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qZP-RK-CAZ"; */
 "qZP-RK-CAZ.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "rMI-7F-aJP"; */
+"rMI-7F-aJP.title" = "バックアップを読み込む";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
 "rbD-Rh-wIN.title" = "Check Spelling While Typing";
