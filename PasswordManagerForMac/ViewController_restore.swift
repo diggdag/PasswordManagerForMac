@@ -20,7 +20,7 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
     let RADIUS:CGFloat = 20
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        headerClear()
 //        NotificationCenter.default.addObserver(self, selector: #selector(ViewController_restore.willEnterForegroundNotification(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -88,7 +88,7 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
         }
     }
     func headerClear()  {
-        backup_col.headerCell.stringValue=""
+        backup_col.headerCell.stringValue=NSLocalizedString("header_backuplist", comment: "")
         tableView.reloadData()
     }
     //コピーボタン押下処理

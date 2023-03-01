@@ -85,3 +85,4 @@
 "restoreFromTextInitText2" = "バックアップテキストを貼り付けてください";
 "restoreListCellText" = "%@";
 "confirm_add" = "名前を入力してください";
+"header_backuplist" = "バックアップ日";
