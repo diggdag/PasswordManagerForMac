@@ -55,6 +55,19 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Tool" id="z6N-bv-6cf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tool" id="IRK-CP-cd3">
+                                    <items>
+                                        <menuItem title="Password Generator" id="nJY-Gx-zx8">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="TBZ-Vb-PTi" kind="show" id="J3y-Bo-9Ed"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="File" id="dMs-cI-mzQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
@@ -678,7 +691,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="827" y="337"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -948,17 +961,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-cU-uiL">
-                                <rect key="frame" x="254" y="165" width="57" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QLq-V4-f7a">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="touchDown_add:" target="XfG-lQ-9wD" id="531-Ld-kqM"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DMd-TA-RZh">
                                 <rect key="frame" x="344" y="177" width="115" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1005,7 +1007,7 @@
                                 </connections>
                             </searchField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vZs-Nr-db4">
-                                <rect key="frame" x="325" y="131" width="98" height="32"/>
+                                <rect key="frame" x="379" y="132" width="98" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="delete row" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3d9-4B-W1B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1015,26 +1017,26 @@
                                     <action selector="touchDown_delete:" target="XfG-lQ-9wD" id="rLD-Qh-LTV"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUG-3X-9bI">
-                                <rect key="frame" x="5" y="195" width="147" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zE-f0-xaV">
+                                <rect key="frame" x="-7" y="195" width="100" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="backup list" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fYg-wA-oc4">
+                                <buttonCell key="cell" type="push" title="backup list" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i58-eY-zMr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="touchDown_backuplist:" target="XfG-lQ-9wD" id="zwp-gr-0CL"/>
+                                    <action selector="touchDown_backuplist:" target="XfG-lQ-9wD" id="B6M-ZS-5Tm"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-y2-fah">
-                                <rect key="frame" x="5" y="228" width="157" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwU-cU-uiL">
+                                <rect key="frame" x="314" y="132" width="57" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Password Generator" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S8w-qB-WQy">
+                                <buttonCell key="cell" type="push" title="add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QLq-V4-f7a">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="touchDown_generateBtn:" target="XfG-lQ-9wD" id="91M-NP-hHN"/>
+                                    <action selector="touchDown_add:" target="XfG-lQ-9wD" id="531-Ld-kqM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1359,23 +1361,81 @@
             </objects>
             <point key="canvasLocation" x="603" y="670"/>
         </scene>
-        <!--View Controller restore-->
+        <!--backup list-->
         <scene sceneID="kW7-X2-z0S">
             <objects>
-                <viewController id="DaY-L7-SjN" customClass="ViewController_restore" customModule="PasswordManagerForMac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="backup list" id="DaY-L7-SjN" customClass="ViewController_restore" customModule="PasswordManagerForMac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="obO-UQ-Dt3">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-tg-SvH">
-                                <rect key="frame" x="0.0" y="0.0" width="212" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oYd-g7-Qwx">
+                                <rect key="frame" x="5" y="5" width="159" height="20"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="431-vt-aqN">
+                                        <rect key="frame" x="-7" y="-7" width="81" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Restore" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="O7h-21-Pl9">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="touchDown_import:" target="DaY-L7-SjN" id="8o4-BR-PLo"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vjP-4j-S2J">
+                                        <rect key="frame" x="68" y="-7" width="98" height="32"/>
+                                        <buttonCell key="cell" type="push" title="delete row" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LDZ-ja-nv5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="touchDown_delete:" target="DaY-L7-SjN" id="gbU-SL-tub"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-y7-8aj">
+                                <rect key="frame" x="212" y="0.0" width="238" height="300"/>
+                                <clipView key="contentView" drawsBackground="NO" id="IK4-zL-i47">
+                                    <rect key="frame" x="0.0" y="0.0" width="238" height="300"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView wantsLayer="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="gAD-aI-Zk6">
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="238" height="300"/>
+                                            <size key="maxSize" width="240" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gV7-BL-bVv">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="t5z-ST-JZo">
+                                    <rect key="frame" x="222" y="0.0" width="16" height="300"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiX-tg-SvH">
+                                <rect key="frame" x="0.0" y="30" width="212" height="270"/>
                                 <clipView key="contentView" id="Izs-Fp-RDI">
-                                    <rect key="frame" x="1" y="1" width="210" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="210" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" headerView="fFi-SW-gAS" id="RFE-k6-lQc">
-                                            <rect key="frame" x="0.0" y="0.0" width="210" height="270"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="210" height="240"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1401,6 +1461,9 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="YHu-Qr-6f1"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Ig8-D4-RiV">
                                     <rect key="frame" x="1" y="283" width="210" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1414,37 +1477,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-y7-8aj">
-                                <rect key="frame" x="210" y="0.0" width="240" height="300"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <clipView key="contentView" drawsBackground="NO" id="IK4-zL-i47">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView wantsLayer="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" smartInsertDelete="YES" id="gAD-aI-Zk6">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="240" height="300"/>
-                                            <size key="maxSize" width="240" height="10000000"/>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="gV7-BL-bVv">
-                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="t5z-ST-JZo">
-                                    <rect key="frame" x="224" y="0.0" width="16" height="300"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="jiX-tg-SvH" firstAttribute="leading" secondItem="obO-UQ-Dt3" secondAttribute="leading" id="4mc-UC-ESh"/>
+                            <constraint firstAttribute="bottom" secondItem="d2l-y7-8aj" secondAttribute="bottom" id="BjS-rf-8fK"/>
+                            <constraint firstAttribute="bottom" secondItem="oYd-g7-Qwx" secondAttribute="bottom" constant="5" id="IwO-JA-uQl"/>
+                            <constraint firstAttribute="trailing" secondItem="d2l-y7-8aj" secondAttribute="trailing" id="NG8-O3-3Zm"/>
+                            <constraint firstItem="oYd-g7-Qwx" firstAttribute="leading" secondItem="obO-UQ-Dt3" secondAttribute="leading" constant="5" id="XJM-mI-RoE"/>
+                            <constraint firstItem="d2l-y7-8aj" firstAttribute="top" secondItem="obO-UQ-Dt3" secondAttribute="top" id="eIL-W3-SQY"/>
+                            <constraint firstItem="jiX-tg-SvH" firstAttribute="top" secondItem="obO-UQ-Dt3" secondAttribute="top" id="g5z-Mw-Ykb"/>
+                            <constraint firstItem="oYd-g7-Qwx" firstAttribute="top" secondItem="jiX-tg-SvH" secondAttribute="bottom" constant="5" id="jvp-G3-bIo"/>
+                            <constraint firstItem="d2l-y7-8aj" firstAttribute="leading" secondItem="jiX-tg-SvH" secondAttribute="trailing" id="rPq-XR-J92"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backup_col" destination="QSe-oQ-xea" id="UA5-Pq-dDA"/>
+                        <outlet property="deleteBtn" destination="vjP-4j-S2J" id="eRJ-xP-0Vi"/>
                         <outlet property="tableView" destination="RFE-k6-lQc" id="fYO-ig-9L8"/>
                         <outlet property="textView" destination="gAD-aI-Zk6" id="hGB-bh-BSg"/>
                     </connections>
@@ -1454,6 +1502,9 @@
             <point key="canvasLocation" x="598" y="1069"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="J3y-Bo-9Ed"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="category_game" width="512" height="512"/>
         <image name="category_website" width="512" height="512"/>

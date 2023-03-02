@@ -699,15 +699,20 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         //confirm_title2
         let answer = dialogOKCancel(question: NSLocalizedString("confirm_title2", comment: ""), text: NSLocalizedString("confirm_sentence_import2", comment: ""))
     }
-    @IBAction func touchDown_generateBtn(_ sender: Any) {
-        self.performSegue(withIdentifier: "toGenerate", sender: nil)
-    }
+//    @IBAction func touchDown_generateBtn(_ sender: Any) {
+//        self.performSegue(withIdentifier: "toGenerate", sender: nil)
+//    }
     @IBAction func touchDown_backuplist(_ sender: Any) {self.performSegue(withIdentifier: "toBackupList", sender: nil)
     }
     //遷移する際の処理/
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCustom" {
             let svc = segue.destinationController as! ViewController_categoryEditing
+            svc.parentVC = self
+            
+        }
+        else if segue.identifier == "toBackupList" {
+            let svc = segue.destinationController as! ViewController_restore
             svc.parentVC = self
             
         }

@@ -18,9 +18,15 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
     @IBOutlet var textView: NSTextView!
     var backups: [Backup] = []
     let RADIUS:CGFloat = 20
+    @IBOutlet var deleteBtn: NSButton!
+    var parentVC:ViewController? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         headerClear()
+        initializeSetting()
+    }
+    func initializeSetting()  {
+        
 //        NotificationCenter.default.addObserver(self, selector: #selector(ViewController_restore.willEnterForegroundNotification(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -44,12 +50,19 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
 //        dummyView.layer.cornerRadius = RADIUS
 //        back.clipsToBounds = true
     }
-    
     //テーブルに値設定
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
         if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_backup") {
-            let format = NSLocalizedString("restoreListCellText", comment: "")//%@のバックアップ
-            let valueArray: [CVarArg] = ["\(Utilities.dateFormatChangeYYYYMMDD(date: backups[row].createDate))"]
+            let format = NSLocalizedString("restoreListCellText", comment: "")//%@(%@件)
+            var cnt :Int64
+            if let text = backups[row].text{
+                cnt = Int64(text.numberOfOccurrences(of: Consts.DELIMITER))
+            }
+            else
+            {
+                cnt = 0;
+            }
+            let valueArray: [CVarArg] = ["\(Utilities.dateFormatChangeYYYYMMDD(date: backups[row].createDate))","\(String(describing: cnt))"]
 //            let cell: TableViewCell_restore = tableView.dequeueReusableCell(withIdentifier: "TableViewCell_restore") as! TableViewCell_restore
 //            cell.setCell(data: Data_restore(createDate:String(format: format, arguments: valueArray)))
 //            return cell
@@ -64,6 +77,7 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
     }
     func tableViewSelectionDidChange(_ notification: Notification){
         print("tableViewSelectionDidChange called!!")
+        deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
         if(tableView.selectedRow != -1 && backups[tableView.selectedRow].text != nil){
             copyBtnTouchDown(text: backups[tableView.selectedRow].text!)
             backup_col.headerCell.stringValue="copied!!"
@@ -109,7 +123,142 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
 //        ViewController_popup.dispText = String(format: format, arguments: valueArray)//ポップアップビューコントローラーにテキストを設定
 //        performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
     }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @IBAction func touchDown_import(_ sender: Any) {
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup2: NSAlert = NSAlert()
+            myPopup2.messageText = question
+            myPopup2.informativeText = text
+            myPopup2.alertStyle = NSAlert.Style.warning
+            myPopup2.addButton(withTitle: "OK")
+            myPopup2.addButton(withTitle: "Cancel")
+            let res = myPopup2.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+//                let name = (myPopup.accessoryView as! NSTextField).stringValue
+                var backuptext = "";
+                if let text = backups[tableView.selectedRow].text {
+                    backuptext = text
+                }
+                print("FirstButton name:\(backuptext)")
+                
+//                do{
+//                    //現状を保存
+//                    let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+//                    let viewContext = appDelegate.persistentContainer.viewContext
+//                    let entity = NSEntityDescription.entity(forEntityName: "Backup", in: viewContext)
+//                    let newRecord = NSManagedObject(entity: entity!, insertInto: viewContext)
+//                    newRecord.setValue(Date(), forKey: "createDate")
+//                    newRecord.setValue("\(Utilities.makeBackUpText())", forKey: "text")
+//                    //                appDelegate.saveContext()
+//
+//                    appDelegate.saveAction(nil)//TODO 要らない疑惑
+//                    try viewContext.save()//TODO こっちが必要なものでは？
+//                }
+//                catch{
+//
+//                }
+                //バックアップ処理
+                let cnt = Utilities.importBackUpText(text: backuptext)
+                
+                let format = NSLocalizedString("info_sentence3", comment: "")//バックアップのリストアが完了しました(%@件)
+                let valueArray: [CVarArg] = [String(cnt)]
+                self.showAlert(myTitle: NSLocalizedString("info_title", comment: ""), mySentence: String(format: format, arguments: valueArray))
+                
+                //                tableView.reloadData()
+                parentVC?.headerClear()
+//                headerClear()
+                parentVC?.initializeSetting()
+                headerClear()
+                initializeSetting()
+                tableView.reloadData()
+                textView.string=backups[tableView.selectedRow].text!
+                
+                return true
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        //confirm_title2
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_title2", comment: ""), text: NSLocalizedString("confirm_sentence_import2", comment: ""))
+    }
+    @IBAction func touchDown_delete(_ sender: Any) {
+        if(tableView.selectedRow == -1){
+            return;
+        }
+        
+        let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let request: NSFetchRequest<Backup> = Backup.fetchRequest()
+        let backup: Backup = self.backups[tableView.selectedRow]
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = question
+            myPopup.informativeText = text
+            myPopup.alertStyle = NSAlert.Style.warning
+            myPopup.addButton(withTitle: "OK")
+            myPopup.addButton(withTitle: "Cancel")
+            let res = myPopup.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                
+                let predicate = NSPredicate(format: "createDate = %@", backup.createDate! as CVarArg)
+
+                request.predicate = predicate
+                do {
+                    let fetchResults = try viewContext.fetch(request)
+                    for result: AnyObject in fetchResults {
+                        let record = result as! NSManagedObject
+                        viewContext.delete(record)
+                    }
+                    try viewContext.save()
+                    headerClear()
+                    initializeSetting()
+                    textView.string=backups[tableView.selectedRow].text!
+                } catch {
+                }
+                return true
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_title", comment: ""), text: String(format: NSLocalizedString("confirm_sentence_delete", comment: ""), arguments: [backup.createDate! as CVarArg]))
+    }
+    //アラートを表示するメソッド
+    func showAlert(myTitle: String, mySentence: String) {
+        let alert = NSAlert()
+        alert.alertStyle = NSAlert.Style.warning
+        alert.messageText = mySentence
+        alert.informativeText = myTitle
+        alert.icon = NSImage(named: NSImage.computerName)
+        
+        let ok = alert.addButton(withTitle: "Ok")
+        ok.image = NSImage(named: NSImage.actionTemplateName)
+        ok.imagePosition = NSControl.ImagePosition.imageLeft
+        ok.tag = ButtonTag.Ok.rawValue
+        
+        //            let cancel = alert.addButton(withTitle: "Cancel")
+        //            cancel.tag = ButtonTag.Cancel.rawValue
+        
+        // alert.runModal()
+        alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+            switch response.rawValue
+            {
+            case ButtonTag.Ok.rawValue:
+                print("OK")
+                break
+                //                case ButtonTag.Cancel.rawValue:
+                //                    print("Cancel")
+                //                    break
+            default:
+                print("invalid")
+            }
+        })
+    }
+    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return backups.count
 //    }
     

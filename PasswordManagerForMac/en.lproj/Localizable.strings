@@ -85,6 +85,6 @@
 
 "restoreFromTextInitText" = "Please Paste the backup text here and press the button below.(Please Delete this text)";
 "restoreFromTextInitText2" = "Please Paste the backup text here.";
-"restoreListCellText" = "%@";
+"restoreListCellText" = "%@(%@ accounts)";
 "confirm_add" = "Please input name";
 "header_backuplist" = "backup date";
