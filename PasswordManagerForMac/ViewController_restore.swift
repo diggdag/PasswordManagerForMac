@@ -76,7 +76,7 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
         return backups.count;
     }
     func tableViewSelectionDidChange(_ notification: Notification){
-        print("tableViewSelectionDidChange called!!")
+        print("tableViewSelectionDidChange called!! selected row : \(tableView.selectedRow)")
         deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
         if(tableView.selectedRow != -1 && backups[tableView.selectedRow].text != nil){
             copyBtnTouchDown(text: backups[tableView.selectedRow].text!)
@@ -122,6 +122,79 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
 //        let valueArray: [CVarArg] = [text]
 //        ViewController_popup.dispText = String(format: format, arguments: valueArray)//ポップアップビューコントローラーにテキストを設定
 //        performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
+    }
+    @IBAction func touchDown_importText(_ sender: Any) {
+        
+        func dialogOKCancel(question: String, text: String) -> Bool {
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = NSLocalizedString("info_title", comment: "")
+            myPopup.informativeText = NSLocalizedString("restoreFromTextInitText2", comment: "")
+            myPopup.alertStyle = NSAlert.Style.warning
+            let textField = NSTextField(frame: NSRect(x:0,y: 0,width:  200,height:  48))
+            myPopup.accessoryView = textField
+            myPopup.addButton(withTitle: "OK")
+            myPopup.addButton(withTitle: "Cancel")
+            let res = myPopup.runModal()
+            if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                let myPopup2: NSAlert = NSAlert()
+                myPopup2.messageText = question
+                myPopup2.informativeText = text
+                myPopup2.alertStyle = NSAlert.Style.warning
+                myPopup2.addButton(withTitle: "OK")
+                myPopup2.addButton(withTitle: "Cancel")
+                let res = myPopup2.runModal()
+                if res == NSApplication.ModalResponse.alertFirstButtonReturn {
+                    let backuptext = (myPopup.accessoryView as! NSTextField).stringValue
+                    print("FirstButton name:\(backuptext)")
+                    
+//                    do{
+//                        //現状を保存
+//                        let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+//                        let viewContext = appDelegate.persistentContainer.viewContext
+//                        let entity = NSEntityDescription.entity(forEntityName: "Backup", in: viewContext)
+//                        let newRecord = NSManagedObject(entity: entity!, insertInto: viewContext)
+//                        newRecord.setValue(Date(), forKey: "createDate")
+//                        newRecord.setValue("\(Utilities.makeBackUpText())", forKey: "text")
+//                        //                appDelegate.saveContext()
+//
+//                        appDelegate.saveAction(nil)//TODO 要らない疑惑
+//                        try viewContext.save()//TODO こっちが必要なものでは？
+//                    }
+//                    catch{
+//
+//                    }
+                    //バックアップ処理
+                    let cnt = Utilities.importBackUpText(text: backuptext)
+                    
+                    let format = NSLocalizedString("info_sentence3", comment: "")//バックアップのリストアが完了しました(%@件)
+                    let valueArray: [CVarArg] = [String(cnt)]
+                    self.showAlert(myTitle: String(format: format, arguments: valueArray), mySentence: NSLocalizedString("info_title", comment: ""))
+                    
+                    //                tableView.reloadData()
+                    parentVC?.headerClear()
+                    parentVC?.initializeSetting()
+                    headerClear()
+                    initializeSetting()
+                    tableView.reloadData()
+                    if(tableView.selectedRow != -1){
+                        textView.string=backups[tableView.selectedRow].text!
+                    }
+                    
+                    return true
+                }
+                else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                    print("SecondButton")
+                    return true
+                }
+            }
+            else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
+                print("SecondButton")
+                return true
+            }
+            return false
+        }
+        //confirm_title2
+        let answer = dialogOKCancel(question: NSLocalizedString("confirm_title2", comment: ""), text: NSLocalizedString("confirm_sentence_import2", comment: ""))
     }
     @IBAction func touchDown_import(_ sender: Any) {
         func dialogOKCancel(question: String, text: String) -> Bool {
@@ -170,7 +243,9 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
                 headerClear()
                 initializeSetting()
                 tableView.reloadData()
-                textView.string=backups[tableView.selectedRow].text!
+                if(tableView.selectedRow != -1){
+                    textView.string=backups[tableView.selectedRow].text!
+                }
                 
                 return true
             }
@@ -212,9 +287,15 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
                         viewContext.delete(record)
                     }
                     try viewContext.save()
-                    headerClear()
                     initializeSetting()
-                    textView.string=backups[tableView.selectedRow].text!
+                    headerClear()
+                    if(tableView.selectedRow == -1){
+                        textView.string=""
+                    }
+                    else{
+                        textView.string=backups[tableView.selectedRow].text!
+                        
+                    }
                 } catch {
                 }
                 return true
