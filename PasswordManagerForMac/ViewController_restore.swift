@@ -123,6 +123,47 @@ class ViewController_restore: NSViewController , NSTableViewDelegate, NSTableVie
 //        ViewController_popup.dispText = String(format: format, arguments: valueArray)//ポップアップビューコントローラーにテキストを設定
 //        performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
     }
+    
+    @IBAction func touchDown_backup(_ sender: Any) {
+        NSPasteboard.general.clearContents()
+//        let board = UIPasteboard.general
+        let text = Utilities.makeBackUpText()
+        
+        //クリップボード
+
+        NSPasteboard.general.setString(text, forType: .string)
+//        board.string = text
+        
+        //リストアテキストボックス
+//        importText.text = text
+        do{
+            //データベース
+            let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+            let viewContext = appDelegate.persistentContainer.viewContext
+            let entity = NSEntityDescription.entity(forEntityName: "Backup", in: viewContext)
+            let newRecord = NSManagedObject(entity: entity!, insertInto: viewContext)
+            newRecord.setValue(Date(), forKey: "createDate")
+            newRecord.setValue(text, forKey: "text")
+            //        appDelegate.saveContext()
+            appDelegate.saveAction(nil)//TODO 要らない疑惑
+            try viewContext.save()//TODO こっちが必要なものでは？
+        }
+        catch{
+        }
+//        ViewController_popup.dispText = NSLocalizedString("info_sentence2", comment: "")//ポップアップビューコントローラーにテキストを設定
+//        self.performSegue(withIdentifier: "toPopUp", sender: nil)//ポップアップビューコントローラーを表示
+        
+        showAlert(myTitle:NSLocalizedString("info_sentence2", comment: "") , mySentence: NSLocalizedString("info_title", comment: ""))//バックアップテキストをクリップボードに貼り付けました。\nメモアプリなどに貼り付けて保管してください
+        initializeSetting()
+        headerClear()
+        if(tableView.selectedRow == -1){
+            textView.string=""
+        }
+        else{
+            textView.string=backups[tableView.selectedRow].text!
+            
+        }
+    }
     @IBAction func touchDown_importText(_ sender: Any) {
         
         func dialogOKCancel(question: String, text: String) -> Bool {
