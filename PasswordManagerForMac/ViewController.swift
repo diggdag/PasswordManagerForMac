@@ -231,8 +231,21 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             for key in Utilities.settings.keys{
                 let setting = Utilities.settings[key]
                 if index == setting!.no {
-                    var item = NSMenuItem()
-                    item.image = Category(rawValue:setting!.imageNo)!.image()
+                    let item = NSMenuItem()
+                    let size = CGSize(width: Consts.CAT_ICON_SIZE,height: Consts.CAT_ICON_SIZE) // 目的のピクセルサイズ
+                    guard let cgContext = CGContext(data: nil,
+                                                    width: Int(size.width),
+                                                    height: Int(size.height),
+                                                    bitsPerComponent: 8,
+                                                    bytesPerRow: 4 * Int(size.width),
+                                                    space: CGColorSpaceCreateDeviceRGB(),
+                                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                        return
+                    }
+                    let cgImage:CGImage = Category(rawValue:setting!.imageNo)!.image().toCGImage//何かしらCGImageを生成
+                    cgContext.draw(cgImage, in: CGRect(origin: .zero, size: size))
+                    guard let image = cgContext.makeImage() else { return }
+                    item.image = image.toNSImage
                     item.title = setting!.name!
                     mymenu.addItem(item)
                     //                    var image = UIImage()
@@ -590,9 +603,9 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
 //        settings.remove(at: tableView.selectedRow)
 //        tableView.reloadData()
     }
-//    @IBAction func touchDown_generateBtn(_ sender: Any) {
-//        self.performSegue(withIdentifier: "toGenerate", sender: nil)
-//    }
+    @IBAction func touchDown_generateBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "toGenerate", sender: nil)
+    }
     @IBAction func touchDown_backuplist(_ sender: Any) {self.performSegue(withIdentifier: "toBackupList", sender: nil)
     }
     //遷移する際の処理/

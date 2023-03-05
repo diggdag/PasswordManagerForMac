@@ -108,4 +108,5 @@ class Consts {
         ,15:NSImage(named: Consts.CATEGORY_WORK2_IMAGE)!
         ,16:NSImage(named: Consts.CATEGORY_OTHER2_IMAGE)!
     ]
+    static let CAT_ICON_SIZE = 20
 }

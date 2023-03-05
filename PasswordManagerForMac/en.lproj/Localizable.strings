@@ -24,6 +24,7 @@
 "error_sentence9" = "Please specify the number of characters with numbers";
 "error_sentence10" = "Please create at least one category";
 "error_sentence11" = "Please select image";
+"error_sentence12" = "There is a category with no name set";
 "sum" = "Total";
 "unit" = "";
 "confirm_title" = "Confirm";
@@ -72,7 +73,7 @@
 
 "confirm_sentence_import" = "Delete all data and replace it.\n Are you sure?\n\n※※※※※※※※※※※※※※※※※※※※※※※※※※※\nRecommended to make a backup\n※※※※※※※※※※※※※※※※※※※※※※※※※※※";
 
-"confirm_sentence_import2" = "Delete all data and replace it.\n Are you sure?";
+"confirm_sentence_import2" = "Delete all data and replace it.\n Are you sure?\n※After import, please set category icons";
 
 
 "restore_default_text" = "Please include backup text here.\n<Sample>\n\n★Easy to use! Password management book Backup★\n   Creation date:yyyy-mm-dd hh:mm:ss\n------------------------\n・name：Apple\n・ID：id_sample\n・password：password\n------------------------\n・name：Apple2\n・ID：id_sample2\n・password：password2";

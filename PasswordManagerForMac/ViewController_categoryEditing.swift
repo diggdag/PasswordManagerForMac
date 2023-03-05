@@ -72,7 +72,22 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
                 let image = Consts.images[key]
                 if index == key {
                     var item = NSMenuItem()
-                    item.image = image
+                    let size = CGSize(width: Consts.CAT_ICON_SIZE,height: Consts.CAT_ICON_SIZE) // 目的のピクセルサイズ
+                    guard let cgContext = CGContext(data: nil,
+                                                    width: Int(size.width),
+                                                    height: Int(size.height),
+                                                    bitsPerComponent: 8,
+                                                    bytesPerRow: 4 * Int(size.width),
+                                                    space: CGColorSpaceCreateDeviceRGB(),
+                                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                        return
+                    }
+                    if image != nil {
+                        let cgImage:CGImage = image!.toCGImage
+                        cgContext.draw(cgImage, in: CGRect(origin: .zero, size: size))
+                        guard let _image = cgContext.makeImage() else { return }
+                        item.image = _image.toNSImage
+                    }
                     item.title = ""
                     mymenu.addItem(item)
                 }
@@ -151,21 +166,22 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
             //validation start----------------------
             //名前は必須
             if(name == "") {
-                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence3", comment: ""))//名前を入力してください
+                showAlert(myTitle:NSLocalizedString("error_sentence3", comment: "") , mySentence: NSLocalizedString("error_title", comment: ""))//名前を入力してください
                 return
             }
             //重複した名前がないか
             var duplication = false
             for setting in settings{
-                for _setting in settings{
-                    if setting.no != _setting.no && setting.name == _setting.name {
+//                for _setting in settings{
+//                    if setting.no != _setting.no && setting.name == _setting.name {
+                if name == setting.name{
                         duplication = true
                     }
-                    
-                }
+//
+//                }
             }
             if(duplication) {
-                showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence6", comment: ""))//同じ名前があります
+                showAlert(myTitle:NSLocalizedString("error_sentence2", comment: "") , mySentence:NSLocalizedString("error_title", comment: "") )//その名前はすでに使用されています
                 return
             }
             //validation end----------------------
@@ -187,7 +203,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
         //validation start----------------------
         //カテゴリーが１つ以上存在するか
         if(settings.count == 1) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence10", comment: ""))//少なくとも１つのカテゴリを作成して下さい
+            showAlert(myTitle:NSLocalizedString("error_sentence10", comment: ""), mySentence:NSLocalizedString("error_title", comment: ""))//少なくとも１つのカテゴリを作成して下さい
             return
         }
         btnAction()
@@ -197,7 +213,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
         //validation start----------------------
         //カテゴリーが１つ以上存在するか
         if(settings.count == 0) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence8", comment: ""))//少なくとも１つのカテゴリを作成して下さい
+            showAlert(myTitle: NSLocalizedString("error_sentence8", comment: ""), mySentence:NSLocalizedString("error_title", comment: "") )//少なくとも１つのカテゴリを作成して下さい
             return
         }
         //名前が空白のカテゴリーが存在しないか
@@ -208,7 +224,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
             }
         }
         if(isEmptyOrNil) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence7", comment: ""))//名前を入力してください
+            showAlert(myTitle: NSLocalizedString("error_sentence12", comment: ""), mySentence:NSLocalizedString("error_title", comment: "") )//名前が設定されていないカテゴリーがあります
             return
         }
         //重複した名前がないか
@@ -222,7 +238,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
             }
         }
         if(duplication) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence6", comment: ""))//同じ名前があります
+            showAlert(myTitle: NSLocalizedString("error_sentence6", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//同じ名前があります
             return
         }
         //選択していないカテゴリが存在していないか
@@ -233,7 +249,7 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
             }
         }
         if(notSelectCategory) {
-            showAlert(myTitle: NSLocalizedString("error_title", comment: ""), mySentence: NSLocalizedString("error_sentence11", comment: ""))//イメージを選択してください
+            showAlert(myTitle: NSLocalizedString("error_sentence11", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//イメージを選択してください
             return
         }
         //validation end----------------------

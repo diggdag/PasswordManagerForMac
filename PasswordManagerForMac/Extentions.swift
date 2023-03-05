@@ -118,3 +118,36 @@ extension String {
         return count
     }
 }
+extension NSImage {
+    var toCGImage: CGImage {
+        var imageRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
+        #if swift(>=3.0)
+        guard let image =  cgImage(forProposedRect: &imageRect, context: nil, hints: nil) else {
+            abort()
+        }
+        #else
+        guard let image = CGImageForProposedRect(&imageRect, context: nil, hints: nil) else {
+            abort()
+        }
+        #endif
+        return image
+    }
+}
+extension CGImage {
+    var size: CGSize {
+        #if swift(>=3.0)
+        #else
+        let width = CGImageGetWidth(self)
+        let height = CGImageGetHeight(self)
+        #endif
+        return CGSize(width: width, height: height)
+    }
+
+    var toNSImage: NSImage {
+        #if swift(>=3.0)
+        return NSImage(cgImage: self, size: size)
+        #else
+        return NSImage(CGImage: self, size: size)
+        #endif
+    }
+}
