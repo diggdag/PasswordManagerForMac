@@ -92,6 +92,9 @@
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Preferences…";
 
+/* Class = "NSTableColumn"; headerCell.title = "name"; ObjectID = "BX7-uQ-DR4"; */
+"BX7-uQ-DR4.headerCell.title" = "名前";
+
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93"; */
 "BgM-ve-c93.title" = "\tLeft to Right";
 
@@ -103,6 +106,9 @@
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
 "DVo-aG-piG.title" = "Close";
+
+/* Class = "NSViewController"; title = "backup"; ObjectID = "DaY-L7-SjN"; */
+"DaY-L7-SjN.title" = "バックアップ";
 
 /* Class = "NSTextFieldCell"; title = "Text"; ObjectID = "DgW-W1-F4s"; */
 "DgW-W1-F4s.title" = "Text";
@@ -155,11 +161,11 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Open…";
 
-/* Class = "NSTextFieldCell"; title = "表示中：ウェブサイト（ダミー）"; ObjectID = "IC0-eR-n17"; */
-"IC0-eR-n17.title" = "表示中：ウェブサイト（ダミー）";
+/* Class = "NSWindow"; title = "Password Manger"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "Password Manger";
 
-/* Class = "NSWindow"; title = "Window"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "Window";
+/* Class = "NSMenu"; title = "Tool"; ObjectID = "IRK-CP-cd3"; */
+"IRK-CP-cd3.title" = "Tool";
 
 /* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
 "J5U-5w-g23.title" = "Justify";
@@ -172,6 +178,9 @@
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "Show All";
+
+/* Class = "NSButtonCell"; title = "delete row"; ObjectID = "LDZ-ja-nv5"; */
+"LDZ-ja-nv5.title" = "行削除";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Bring All to Front";
@@ -206,6 +215,9 @@
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
 "Nop-cj-93Q.title" = "\tDefault";
 
+/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "O7h-21-Pl9"; */
+"O7h-21-Pl9.title" = "リストア";
+
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Minimize";
 
@@ -233,9 +245,6 @@
 /* Class = "NSTableColumn"; headerCell.title = "backup date"; ObjectID = "QSe-oQ-xea"; */
 "QSe-oQ-xea.headerCell.title" = "backup date";
 
-/* Class = "NSButtonCell"; title = "Make Backup"; ObjectID = "QrV-TI-HWL"; */
-"QrV-TI-HWL.title" = "バックアップを作成";
-
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
 "R4o-n2-Eq4.title" = "Zoom";
 
@@ -251,8 +260,11 @@
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
 "S0p-oC-mLd.title" = "Jump to Selection";
 
-/* Class = "NSButtonCell"; title = "Password Generator"; ObjectID = "S8w-qB-WQy"; */
-"S8w-qB-WQy.title" = "パスワード生成";
+/* Class = "NSViewController"; title = "Password Generator"; ObjectID = "TBZ-Vb-PTi"; */
+"TBZ-Vb-PTi.title" = "パスワードジェネレータ";
+
+/* Class = "NSButtonCell"; title = "Password Generator"; ObjectID = "TFl-JA-NCT"; */
+"TFl-JA-NCT.title" = "パスワードジェネレータ";
 
 /* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "THw-4l-ghK"; */
 "THw-4l-ghK.title" = "Label";
@@ -287,6 +299,9 @@
 /* Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S"; */
 "WRG-CD-K1S.title" = "Underline";
 
+/* Class = "NSButtonCell"; title = "Make Backup"; ObjectID = "WVQ-YO-AgB"; */
+"WVQ-YO-AgB.title" = "バックアップを作成";
+
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "Was-JA-tGl"; */
 "Was-JA-tGl.title" = "New";
 
@@ -295,6 +310,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Xby-wx-iyN"; */
 "Xby-wx-iyN.title" = "Text Cell";
+
+/* Class = "NSViewController"; title = "Password Manger"; ObjectID = "XfG-lQ-9wD"; */
+"XfG-lQ-9wD.title" = "パスワードマネージャ";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
 "Xz5-n4-O0W.title" = "Find…";
@@ -350,6 +368,9 @@
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR"; */
 "cDB-IK-hbR.title" = "Use None";
 
+/* Class = "NSViewController"; title = "Category"; ObjectID = "cbS-eC-QZj"; */
+"cbS-eC-QZj.title" = "カテゴリー編集";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "Selection";
 
@@ -371,9 +392,6 @@
 /* Class = "NSButtonCell"; title = "include number"; ObjectID = "eMB-Oh-5Tn"; */
 "eMB-Oh-5Tn.title" = "数字を含む";
 
-/* Class = "NSButtonCell"; title = "backup list"; ObjectID = "fYg-wA-oc4"; */
-"fYg-wA-oc4.title" = "バックアップ一覧";
-
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Paste";
 
@@ -388,6 +406,9 @@
 
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST"; */
 "i1d-Er-qST.title" = "Smaller";
+
+/* Class = "NSButtonCell"; title = "backup"; ObjectID = "i58-eY-zMr"; */
+"i58-eY-zMr.title" = "バックアップ・リストア";
 
 /* Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga"; */
 "ijk-EB-dga.title" = "Baseline";
@@ -407,6 +428,9 @@
 /* Class = "NSMenuItem"; title = "Show Sidebar"; ObjectID = "kIP-vf-haE"; */
 "kIP-vf-haE.title" = "Show Sidebar";
 
+/* Class = "NSTextFieldCell"; title = "表示中：ウェブサイト（ダミー）"; ObjectID = "l4A-19-fnP"; */
+"l4A-19-fnP.title" = "表示中：ウェブサイト（ダミー）";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "m8w-9r-1Z2"; */
 "m8w-9r-1Z2.title" = "Text Cell";
 
@@ -415,6 +439,12 @@
 
 /* Class = "NSButtonCell"; title = "include symbol"; ObjectID = "meX-eH-fL4"; */
 "meX-eH-fL4.title" = "記号を含む";
+
+/* Class = "NSTableColumn"; headerCell.title = "image"; ObjectID = "myj-kT-qQb"; */
+"myj-kT-qQb.headerCell.title" = "イメージ";
+
+/* Class = "NSMenuItem"; title = "I"; ObjectID = "nJY-Gx-zx8"; */
+"nJY-Gx-zx8.title" = "I";
 
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq"; */
 "o6e-r0-MWq.title" = "Ligatures";
@@ -442,9 +472,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qZP-RK-CAZ"; */
 "qZP-RK-CAZ.title" = "Text Cell";
-
-/* Class = "NSButtonCell"; title = "Restore"; ObjectID = "rMI-7F-aJP"; */
-"rMI-7F-aJP.title" = "バックアップを読み込む";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
 "rbD-Rh-wIN.title" = "Check Spelling While Typing";
@@ -520,3 +547,9 @@
 
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "Show Substitutions";
+
+/* Class = "NSMenuItem"; title = "Tool"; ObjectID = "z6N-bv-6cf"; */
+"z6N-bv-6cf.title" = "Tool";
+
+/* Class = "NSButtonCell"; title = "Restore from text"; ObjectID = "zDQ-Yp-kBT"; */
+"zDQ-Yp-kBT.title" = "テキストから復元する";

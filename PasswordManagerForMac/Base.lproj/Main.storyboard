@@ -55,19 +55,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Tool" id="z6N-bv-6cf">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Tool" id="IRK-CP-cd3">
-                                    <items>
-                                        <menuItem title="I" id="nJY-Gx-zx8">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <segue destination="TBZ-Vb-PTi" kind="show" id="J3y-Bo-9Ed"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="File" id="dMs-cI-mzQ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
@@ -1140,7 +1127,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="ZsZ-Gc-pmz">
-                                    <rect key="frame" x="1" y="273" width="141" height="16"/>
+                                    <rect key="frame" x="1" y="173" width="191" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="DmU-Wt-VH9">
@@ -1362,7 +1349,7 @@
                                                     </popUpButtonCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="col_category_name" width="101" minWidth="40" maxWidth="1000" id="BX7-uQ-DR4">
+                                                <tableColumn identifier="col_category_name" width="86" minWidth="40" maxWidth="1000" id="BX7-uQ-DR4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="name">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -1631,9 +1618,6 @@
             <point key="canvasLocation" x="598" y="1069"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="LzN-DB-MIa"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="category_game" width="512" height="512"/>
         <image name="category_website" width="512" height="512"/>
