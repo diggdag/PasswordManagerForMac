@@ -16,10 +16,21 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     var selectedSectionNum: Int?
     var selectedItemNum: Int?
     var settings: [_CategorySetting] = []
+    var selectedItem:Int = 0
     
     static var searchText: String? = nil
     static var selectedCategory: _CategorySetting? = nil
     
+    @IBOutlet var name: NSTextField!
+    @IBOutlet var id: NSTextField!
+    @IBOutlet var password: NSTextField!
+    @IBOutlet var mail: NSTextField!
+    
+    @IBOutlet var copied_name: NSTextField!
+    @IBOutlet var copied_id: NSTextField!
+    @IBOutlet var copied_password: NSTextField!
+    @IBOutlet var copied_mail: NSTextField!
+    @IBOutlet var copied_apply: NSTextField!
     @IBOutlet var mymenu: NSMenu!
     @IBOutlet weak var tableView: NSTableView!
     //    @IBOutlet weak var tableView: NSScrollView!
@@ -30,7 +41,9 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBOutlet var segmentedCell: NSSegmentedCell!
     @IBOutlet var selectedCategoryText: NSTextField!
     @IBOutlet var category: NSSegmentedControl!
+    @IBOutlet var memo: NSTextView!
     
+    @IBOutlet var applyBtn: NSButton!
     @IBOutlet var deleteBtn: NSButton!
     @IBOutlet var passwordColumn: NSTableColumn!
     @IBOutlet var tableCell_name: NSTextFieldCell!
@@ -98,8 +111,14 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 ViewController.searchText = name
                 searchBar.stringValue = name
                 ViewController.selectedCategory = nil
+                
+                //セグメントビュー
                 category.setSelected(true, forSegment: 0)
+                selectedCategoryText.stringValue = String(format: NSLocalizedString("showing_text", comment: ""), arguments: [NSLocalizedString("categoryName_all", comment: "")])
+                
                 search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
+                tableView.selectRowIndexes(NSIndexSet(index: 0) as IndexSet, byExtendingSelection: false)
+                setDetail()
                 return true
             }
             else if res == NSApplication.ModalResponse.alertSecondButtonReturn{
@@ -213,8 +232,10 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
         super.viewWillAppear()
         print("viewWillAppear")
         initializeSetting()
+//        initializeSetting(afterCatEdit: false)
     }
     func initializeSetting() {
+        print("initializeSetting called!!")
         if ViewController.searchText != nil {
             searchBar.stringValue = ViewController.searchText!
         }
@@ -239,30 +260,41 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                                                     bitsPerComponent: 8,
                                                     bytesPerRow: 4 * Int(size.width),
                                                     space: CGColorSpaceCreateDeviceRGB(),
-                                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+                                                    bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+                    else {
                         return
                     }
-                    let cgImage:CGImage = Category(rawValue:setting!.imageNo)!.image().toCGImage//何かしらCGImageを生成
+                    let cgImage:CGImage = Category(rawValue:setting!.imageNo)!.image().toCGImage
                     cgContext.draw(cgImage, in: CGRect(origin: .zero, size: size))
                     guard let image = cgContext.makeImage() else { return }
                     item.image = image.toNSImage
                     item.title = setting!.name!
+                    item.tag=index
                     mymenu.addItem(item)
-                    //                    var image = UIImage()
-                    //                    if ViewController_category.selectCategory != nil && setting?.name == ViewController_category.selectCategory?.name{
-                    //                        image = UIImage(named: Consts.CHECK_IMAGE)!
-                    //                    }
-                    //                    categories.append(Data_category(
-                    //                        categoryImage: ,
-                    //                        category: ,
-                    //                        check: image))
-                    //                    break
-                    //                }
                 }
             }
         }
+        setDetail()
     }
     
+    func setDetail() {
+        print("setDetail called!!")
+        mymenu.performActionForItem(at: 0)
+        name.stringValue=""
+        id.stringValue=""
+        password.stringValue=""
+        mail.stringValue=""
+        memo.string=""
+        if(tableView.selectedRow != -1 && accounts?[tableView.selectedRow] != nil){
+            let account:Account = accounts![tableView.selectedRow]
+            mymenu.performActionForItem(at: Int(account.category))
+            name.stringValue = account.name!
+            id.stringValue = (account.id == nil) ? "" : account.id!
+            password.stringValue = (account.password == nil) ? "" : account.password!
+            mail.stringValue = (account.mail == nil) ? "" : account.mail!
+            memo.string = (account.memo == nil) ? "" : account.memo!
+        }
+    }
     //カテゴリーセグメントの設定
     func setCategorySegment() {
         print("setCategorySegment called")
@@ -329,11 +361,12 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     func tableViewSelectionDidChange(_ notification: Notification){
         print("tableViewSelectionDidChange called!!")
         deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
+        applyBtn.isEnabled = !(self.tableView.selectedRow == -1)
         if accounts == nil{
             print("accountsなし")
             return
         }
-        else if tableView.selectedRow == -1 {// && tableView.numberOfRows > 1
+        else if tableView.selectedRow == -1 {
             print("選択なし")
             return
         }
@@ -341,144 +374,39 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             print("行なし")
             return
         }
-        
-        var ac = accounts![0]
-        if tableView.numberOfRows > 1 {
-            ac = accounts![tableView.selectedRow]
-        }
-        if(ac.password == nil){
-            print("パスワードなし")
-            return;
-        }
-        else{
-            if(
-                copyBtnTouchDown(text: ac.password!)
-            ){
-                passwordColumn.headerCell.stringValue="copied!!"
-                tableView.reloadData()
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
-            }
-        }
-            //        print("tableViewSelectionDidChange called!!")
+        setDetail()
     }
     func headerClear()  {
-        let catname = [Consts.RAWNAME_CATEGORY,Consts.RAWNAME_NAME,Consts.RAWNAME_ID,Consts.RAWNAME_PASSWORD,Consts.RAWNAME_MAIL,Consts.RAWNAME_MEMO]
-        for (i,col) in tableView.tableColumns.enumerated(){
-            col.headerCell.stringValue=catname[i]
-//            col.headerCell.textColor = .black
-        }
-        tableView.reloadData()
+//        let catname = [Consts.RAWNAME_CATEGORY,Consts.RAWNAME_NAME,Consts.RAWNAME_ID,Consts.RAWNAME_PASSWORD,Consts.RAWNAME_MAIL,Consts.RAWNAME_MEMO]
+//        for (i,col) in tableView.tableColumns.enumerated(){
+//            col.headerCell.stringValue=catname[i]
+//        }
+//        tableView.reloadData()
+        copied_name.stringValue = ""
+        copied_id.stringValue = ""
+        copied_password.stringValue = ""
+        copied_mail.stringValue = ""
+        copied_apply.stringValue = ""
     }
     func tableView(_ tableView: NSTableView, mouseDownInHeaderOf tableColumn: NSTableColumn){
         print("mouseDownInHeaderOf")
-        if accounts == nil{
-            print("accountsなし")
-            return
-        }
-        else if tableView.selectedRow == -1 && tableView.numberOfRows > 1 {
-            print("選択なし")
-            return
-        }
-        else if tableView.numberOfRows == 0{
-            print("行なし")
-            return
-        }
-        
-        var ac = accounts![0]
-        if tableView.numberOfRows > 1 {
-            ac = accounts![tableView.selectedRow]
-        }
-        var copySuccess = false
-        if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_category") {
-            print("col_category")
-            return
-        }
-        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_name") {
-            copySuccess = copyBtnTouchDown(text: ac.name!)
-        }
-        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_id") {
-            if(ac.id == nil){return;}
-            else{
-                copySuccess = copyBtnTouchDown(text: ac.id!)
-            }
-        }
-        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_password") {
-            if(ac.password == nil){return;}
-            else{
-                copySuccess = copyBtnTouchDown(text: ac.password!)
-            }
-        }
-        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_mail") {
-            if(ac.mail == nil){return;}
-            else{
-                copySuccess = copyBtnTouchDown(text: ac.mail!)
-            }
-        }
-        else if tableColumn.identifier == NSUserInterfaceItemIdentifier("col_memo") {
-            if(ac.memo == nil){return;}
-            else{
-                copySuccess = copyBtnTouchDown(text: ac.memo!)
-            }
-        }
-        if(copySuccess)
-        {
-            tableColumn.headerCell.stringValue="copied!!"
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
-        }
-//        tableColumn.headerCell.textColor = .blue
-//        tableColumn.headerCell.backgroundColor = .blue
     }
     //テーブルに値設定
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any?{
-        //        let account: Account = accounts![indexPath.section][indexPath.row]
-        //
-        //        let cell: TableViewCell_list = tableView.dequeueReusableCell(withIdentifier: "TableViewCell_list") as! TableViewCell_list
-        //
-        //        cell.backgroundColor = UIColor.clear
-        //        cell.contentView.backgroundColor = UIColor.clear
-        //        return cell
-        
-        
-        //        print("objectValueFor called!!row:\(row),column:\(tableColumn?.identifier.rawValue)")
         if accounts == nil{
             print("accountsなし")
             return nil
         }
-        //        print("row:\(row),tableColumn?.identifier:\(tableColumn?.identifier)")
         if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_category") {
             if accounts![row].category != Int16.max{
-                return accounts![row].category
-                //                return Category(rawValue:Utilities.settings[ accounts![row].category]!.imageNo)!.image()
+                return mymenu.items[Int(accounts![row].category)].image
             }
             else{
-                return -1
+                return NSImage()
             }
-            //            return accounts![row].category;
         }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_name") {//AutomaticTableColumnIdentifier.0
+        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_name") {
             return accounts![row].name;
-        }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_id") {
-            return accounts![row].id;
-        }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_password") {
-            return accounts![row].password
-//            if accounts![row].password == nil{
-//                return nil
-//            }
-//            else{
-//                var rtn:String = String(accounts![row].password!.first!);
-//                for _ in 0...accounts![row].password!.utf16.count{
-//                    rtn = rtn + "●";
-//                }
-//                return rtn;
-//            }
-        }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_mail") {
-            return accounts![row].mail;
-        }
-        else if tableColumn?.identifier == NSUserInterfaceItemIdentifier("col_memo") {
-            return accounts![row].memo;
         }
         return "undef"
     }
@@ -552,6 +480,85 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
 //        dismiss(viewController)
 //        initializeSetting()
 //    }
+    @IBAction func chnageValue_mymenu(_ sender: Any) {
+        if((sender as! NSPopUpButton).selectedItem != nil)
+        {
+            selectedItem = (sender as! NSPopUpButton).selectedItem!.tag
+            print("chnageValue_mymenu called!! : \(selectedItem)")
+        }
+//        mymenu.selectedItem
+        
+    }
+    @IBAction func touchDown_apply(_ sender: Any) {
+        let ac:Account = accounts![tableView.selectedRow]
+        
+        var _name = ac.name
+        var _id = ac.id
+        var _password = ac.password
+        var _mail = ac.mail
+        var _memo = ac.memo
+        var _category = ac.category
+        
+            
+        _category = Int16(selectedItem)
+        
+        _name = name.stringValue
+            //名前は必須
+        if(_name == "") {
+                showAlert(myTitle:NSLocalizedString("error_sentence3", comment: "") , mySentence: NSLocalizedString("error_title", comment: ""))//名前を入力してください
+                return
+            }
+            
+            //名前がすでに使用されているかどうかをチェックする
+        let account: Account? = Utilities.getAccount(name: _name!)
+        if account?.name != ac.name && account != nil {
+                showAlert(myTitle: NSLocalizedString("error_sentence2", comment: ""), mySentence: NSLocalizedString("error_title", comment: ""))//その名前はすでに使用されています
+                return
+            }
+        _id = id.stringValue
+        _password = password.stringValue
+        _mail = mail.stringValue
+        _memo = memo.string
+        print("update name:\(_name),id:\(_id),password\(_password),mail\(_mail),memo\(_memo),category:\(_category)")
+        let appDelegate: AppDelegate = NSApplication.shared.delegate as! AppDelegate
+        let viewContext = appDelegate.persistentContainer.viewContext
+        let request: NSFetchRequest<Account> = Account.fetchRequest()
+        let predicate = NSPredicate(format: "name = %@", ac.name!)
+        request.predicate = predicate
+        do {
+            let fetchResults = try viewContext.fetch(request)
+            for result: AnyObject in fetchResults {
+                let record = result as! NSManagedObject
+                record.setValue(_name, forKey: "name")
+                record.setValue(_id, forKey: "id")
+                record.setValue(_password, forKey: "password")
+                record.setValue(_mail, forKey: "mail")
+                record.setValue(_memo, forKey: "memo")
+                record.setValue(_category, forKey: "category")
+            }
+            try viewContext.save()
+        } catch {
+        }
+        copied_apply.stringValue = NSLocalizedString("alertMsg_save", comment: "")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
+        search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
+    }
+    @IBAction func touchDown_copy_name(_ sender: Any) {
+        copied_name.stringValue=NSLocalizedString("alertMsg_copy", comment: "")
+        _ = copyBtnTouchDown(text: name.stringValue)
+    }
+    @IBAction func touchDown_copy_id(_ sender: Any) {
+        copied_id.stringValue=NSLocalizedString("alertMsg_copy", comment: "")
+        _ = copyBtnTouchDown(text: id.stringValue)
+    }
+    @IBAction func touchDown_copy_password(_ sender: Any) {
+        copied_password.stringValue=NSLocalizedString("alertMsg_copy", comment: "")
+        _ = copyBtnTouchDown(text: password.stringValue)
+    }
+    @IBAction func touchDown_copy_mail(_ sender: Any) {
+        copied_mail.stringValue=NSLocalizedString("alertMsg_copy", comment: "")
+        _ = copyBtnTouchDown(text: mail.stringValue)
+    }
     @IBAction func touchDown_tocategory(_ sender: Any) {
         headerClear()
         performSegue(withIdentifier: "toCustom", sender: self)
@@ -718,6 +725,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
                 ViewController.searchText = searchBar.stringValue == "" ? nil : searchBar.stringValue
                 search(searchText: ViewController.searchText, category: ViewController.selectedCategory)
             }
+            setDetail()
             //            else if field.identifier == NSUserInterfaceItemIdentifier("search2") {
             //                print("search2")//test
             //            }
@@ -745,6 +753,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     //コピーボタン押下処理
     func copyBtnTouchDown(text:String) -> Bool  {
 //        setStateTextBox()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(time:Timer) in self.headerClear()})
         if text == "" {
             print("テキストが空文字のため終了")
             return false
@@ -767,6 +776,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
     @IBAction func valueChanged(_ sender: Any) {
         print("category value changed called! selected index:\(category.selectedSegment)")
         deleteBtn.isEnabled = !(self.tableView.selectedRow == -1)
+        applyBtn.isEnabled = !(self.tableView.selectedRow == -1)
 //        let segment: UISegmentedControl = sender as! UISegmentedControl
         //ALL
         if category.selectedSegment == 0{
@@ -778,6 +788,7 @@ class ViewController: NSViewController,NSTableViewDelegate,NSTableViewDataSource
             changeCategory(category: _CategorySetting(no: setting!.no, name: setting?.name, imageNo: setting!.imageNo))
             selectedCategoryText.stringValue = String(format: NSLocalizedString("showing_text", comment: ""), arguments: [setting!.name!])
         }
+        setDetail()
     }
     //引数accountsでグローバル変数sectionsを作り直す
     //※ appendAccountsより前に呼ぶ

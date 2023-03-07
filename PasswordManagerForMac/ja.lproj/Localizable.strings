@@ -87,3 +87,5 @@
 "restoreListCellText" = "%@(%@件)";
 "confirm_add" = "名前を入力してください";
 "header_backuplist" = "バックアップ日";
+"alertMsg_copy" = "copied!!";
+"alertMsg_save" = "保存完了！";

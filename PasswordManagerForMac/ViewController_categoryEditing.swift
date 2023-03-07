@@ -349,16 +349,8 @@ class ViewController_categoryEditing: NSViewController,NSTableViewDelegate,NSTab
             }
         }
         ViewController.selectedCategory = nil//TODO 移植元も一応こうなっているが...
-//        parent?.viewWillAppear()
-        parentVC?.viewWillAppear()
-        //遷移元の画面に戻る
-//        self.pop.navigationController?.popViewController(animated: true)
-        self.dismiss(self)
-//        self.navigaion
-//        self.performSegue(withIdentifier: <#T##NSStoryboardSegue.Identifier#>, sender: <#T##Any?#>)
-//        self.
-//        dismiss("hoge")
-//        initializeSetting()
+        parentVC?.initializeSetting()
+        self.view.window?.windowController?.close()
     }
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool{
         
